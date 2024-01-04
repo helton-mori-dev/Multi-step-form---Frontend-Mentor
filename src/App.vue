@@ -1,12 +1,14 @@
 <template>
+  <SidebarForm />
   <Footer />
 </template>
 
 <script>
 import Footer from "./components/AttribuitionFooter.vue";
+import SidebarForm from "./components/SidebarForm.vue";
 export default {
   name: "App",
-  components: { Footer },
+  components: { Footer, SidebarForm },
 };
 </script>
 
@@ -31,5 +33,9 @@ export default {
   --PastelBlue: hsl(228, 100%, 84%);
   --LightBlue: hsl(206, 94%, 87%);
   --StrawberryRed: hsl(354, 84%, 57%);
+}
+
+ul {
+  list-style: none;
 }
 </style>
