@@ -22,6 +22,11 @@ export default {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #eef5ff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 :root {
@@ -35,5 +40,12 @@ export default {
   --PastelBlue: hsl(228, 100%, 84%);
   --LightBlue: hsl(206, 94%, 87%);
   --StrawberryRed: hsl(354, 84%, 57%);
+}
+
+.container {
+  background-color: #fff;
+  display: table;
+  border-radius: 16px;
+  padding: 16px;
 }
 </style>

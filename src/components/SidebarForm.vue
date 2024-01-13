@@ -1,6 +1,6 @@
 <template>
   <section class="sidebar__container">
-    <ul>
+    <ul class="sidebar__list">
       <li v-for="(step, label, index) in steps" :key="index">
         <div class="sidebar__content">
           <span class="sidebar__number">{{ index + 1 }}</span>
@@ -32,10 +32,14 @@ export default {
 <style scoped>
 .sidebar__container {
   background: url("@/assets/images/bg-sidebar-desktop.svg") no-repeat top left;
+  background-size: 100%;
+  background-clip: border-box;
   display: block;
   width: 275px;
   height: 570px;
-  padding: 2rem;
+}
+.sidebar__list {
+  padding: 2rem 0 0 2rem;
 }
 .sidebar__content {
   display: flex;
@@ -45,11 +49,11 @@ export default {
 .sidebar__number {
   border: 1px solid #ccc;
   border-radius: 100%;
-  height: 23px;
-  width: 23px;
+  height: 25px;
+  width: 25px;
   text-align: center;
-  line-height: 21px;
-  font-size: 0.75rem;
+  line-height: 23px;
+  font-size: 0.85rem;
 }
 .sidebar__info {
   display: flex;
@@ -59,13 +63,13 @@ export default {
 }
 .sidebar__label {
   color: #aaa;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   padding: 0 0 4px;
 }
 
 .sidebar__step {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   letter-spacing: 1px;
-  font-weight: 500;
+  font-weight: 600;
 }
 </style>
