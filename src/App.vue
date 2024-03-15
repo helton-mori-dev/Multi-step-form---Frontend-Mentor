@@ -1,16 +1,24 @@
 <template>
-  <div class="container">
-    <SidebarForm />
-    <Footer />
+  <div class="container grid grid-tempate-area-main">
+    <div class="grid__sidebar">
+      <SidebarForm />
+    </div>
+    <div class="grid__data">
+      <StepPersonalInfo />
+    </div>
+    <div class="grid__footer">
+      <Footer />
+    </div>
   </div>
 </template>
 
 <script>
 import Footer from "./components/AttribuitionFooter.vue";
 import SidebarForm from "./components/SidebarForm.vue";
+import StepPersonalInfo from "./components/StepPersonalInfo.vue";
 export default {
   name: "App",
-  components: { Footer, SidebarForm },
+  components: { Footer, SidebarForm, StepPersonalInfo },
 };
 </script>
 
@@ -44,8 +52,29 @@ export default {
 
 .container {
   background-color: #fff;
-  display: table;
   border-radius: 16px;
   padding: 16px;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid__sidebar {
+  grid-area: sidebar;
+}
+
+.grid__data {
+  grid-area: data;
+}
+
+.grid__footer {
+  grid-area: footer;
+}
+
+.grid-tempate-area-main {
+  grid-template-areas:
+    "sidebar data"
+    "footer footer";
 }
 </style>
