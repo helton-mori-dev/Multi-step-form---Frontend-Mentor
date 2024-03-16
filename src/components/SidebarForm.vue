@@ -1,5 +1,5 @@
 <template>
-  <section class="sidebar__container">
+  <section class="sidebar__container grid__sidebar">
     <ul class="sidebar__list">
       <li v-for="(step, label, index) in steps" :key="index">
         <div class="sidebar__content">

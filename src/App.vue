@@ -1,14 +1,8 @@
 <template>
   <div class="container grid grid-tempate-area-main">
-    <div class="grid__sidebar">
-      <SidebarForm />
-    </div>
-    <div class="grid__data">
-      <StepPersonalInfo />
-    </div>
-    <div class="grid__footer">
-      <Footer />
-    </div>
+    <SidebarForm />
+    <StepPersonalInfo />
+    <Footer />
   </div>
 </template>
 
