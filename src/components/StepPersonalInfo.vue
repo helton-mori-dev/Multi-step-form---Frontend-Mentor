@@ -60,7 +60,7 @@
           v-model="form.phone"
         />
 
-        <input type="submit" value="Next Step" />
+        <input type="submit" value="Next Step" class="input__submit" />
       </form>
     </div>
   </section>
