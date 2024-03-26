@@ -1,18 +1,37 @@
 <template>
   <div class="container grid grid-tempate-area-main">
     <SidebarForm />
+    <component :is="currentStep"></component>
     <StepPersonalInfo />
     <Footer />
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import Footer from "./components/AttribuitionFooter.vue";
 import SidebarForm from "./components/SidebarForm.vue";
 import StepPersonalInfo from "./components/StepPersonalInfo.vue";
+import StepSelectPlan from "./components/StepSelectPlan.vue";
+import StepPickAddon from "@/components/StepPickAddon";
+import StepSummary from "@/components/StepSummary";
+
 export default {
   name: "App",
-  components: { Footer, SidebarForm, StepPersonalInfo },
+  components: {
+    Footer,
+    SidebarForm,
+    StepPersonalInfo,
+    StepSelectPlan,
+    StepPickAddon,
+    StepSummary,
+  },
+  computed: {
+    ...mapState(["currentStep"]),
+  },
+  methods: {
+    ...mapActions(["changeStep"]),
+  },
 };
 </script>
 
