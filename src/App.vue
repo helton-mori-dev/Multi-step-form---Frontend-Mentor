@@ -1,8 +1,16 @@
 <template>
   <div class="container grid grid-tempate-area-main">
     <SidebarForm />
-    <component :is="currentStep"></component>
-    <StepPersonalInfo />
+    <section class="grid__data">
+      <component
+        :is="currentStepComponent"
+        @update-step="handleUpdateStep"
+      ></component>
+      <button v-if="currentStepIndex > 0" @click="previousStep">Back</button>
+      <button v-if="currentStepIndex < steps.length - 1" @click="nextStep">
+        Next
+      </button>
+    </section>
     <Footer />
   </div>
 </template>
@@ -27,10 +35,30 @@ export default {
     StepSummary,
   },
   computed: {
-    ...mapState(["currentStep"]),
+    ...mapState(["currentStepIndex"]),
+    steps() {
+      return [
+        "StepPersonalInfo",
+        "StepSelectPlan",
+        "StepPickAddon",
+        "StepSummary",
+      ];
+    },
+    currentStepComponent() {
+      return this.steps[this.currentStepIndex];
+    },
   },
   methods: {
-    ...mapActions(["changeStep"]),
+    ...mapActions(["goToStep", "updateStepData"]),
+    nextStep() {
+      this.goToStep(this.currentStepIndex + 1);
+    },
+    previousStep() {
+      this.goToStep(this.currentStepIndex - 1);
+    },
+    handleUpdateStep({ step, data }) {
+      this.updateStepData({ step, data });
+    },
   },
 };
 </script>
@@ -79,8 +107,10 @@ export default {
 
 .grid__data {
   grid-area: data;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 .grid__footer {
   grid-area: footer;
 }

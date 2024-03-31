@@ -3,20 +3,34 @@ import { createStore } from "vuex";
 export const store = createStore({
   state() {
     return {
-      currentStep: "StepPersonalInfo",
-      plan: 1,
-      frequency: 1,
-      addOns: [],
+      formData: {
+        personalInfo: {},
+        selectedPlan: [],
+        pickedAddons: [],
+      },
+      currentStepIndex: 0,
     };
   },
   mutations: {
-    SET_CURRENT_STEP(state, newStep) {
-      state.currentStep = newStep;
+    updataPersonalInfo(state, info) {
+      state.formData.personalInfo = info;
+    },
+    selectPlan(state, plan) {
+      state.formData.selectedPlan = plan;
+    },
+    pickAddons(state, addons) {
+      state.formData.pickedAddons = addons;
+    },
+    setCurrentStepIndex(state, index) {
+      state.currentStepIndex = index;
     },
   },
   actions: {
-    changeStep({ commit }, newStep) {
-      commit("SET_CURRENT_STEP", newStep);
+    updateStepData({ commit }, { step, data }) {
+      commit(step, data);
+    },
+    goToStep({ commit }, index) {
+      commit("setCurrentStepIndex", index);
     },
   },
 });
