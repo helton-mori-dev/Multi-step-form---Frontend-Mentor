@@ -6,10 +6,23 @@
         :is="currentStepComponent"
         @update-step="handleUpdateStep"
       ></component>
-      <button v-if="currentStepIndex > 0" @click="previousStep">Back</button>
-      <button v-if="currentStepIndex < steps.length - 1" @click="nextStep">
-        Next
-      </button>
+
+      <div class="navigation">
+        <button
+          class="navigation__button back"
+          v-if="currentStepIndex > 0"
+          @click="previousStep"
+        >
+          Back
+        </button>
+        <button
+          class="navigation__button next"
+          v-if="currentStepIndex < steps.length - 1"
+          @click="nextStep"
+        >
+          Next
+        </button>
+      </div>
     </section>
     <Footer />
   </div>
@@ -106,18 +119,54 @@ export default {
 }
 
 .grid__data {
+  display: grid;
   grid-area: data;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  grid-template-rows: 4fr 1fr;
+  align-self: center;
+  justify-self: center;
+  max-width: 80%;
 }
 .grid__footer {
   grid-area: footer;
 }
 
+.grid__buttons {
+  grid-area: buttons;
+}
+
 .grid-tempate-area-main {
   grid-template-areas:
     "sidebar data"
+    "sidebar buttons"
     "footer footer";
+  grid-template-rows: 24fr 1fr;
+}
+
+.navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "back next";
+  align-items: end;
+}
+
+.navigation__button {
+  background-color: var(--DarkBlue);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.75rem 0;
+  width: 110px;
+  height: 42px;
+  border: none;
+  transition: 0.3s all ease;
+  cursor: pointer;
+}
+
+.navigation__button.next {
+  grid-area: next;
+  justify-self: end;
+}
+
+.navigation__button.back {
+  grid-area: back;
 }
 </style>

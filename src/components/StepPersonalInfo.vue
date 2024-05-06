@@ -59,12 +59,12 @@
         v-model="form.phone"
       />
 
-      <input
+      <!-- <input
         type="button"
         value="Next Step"
         class="input__submit"
         @click="submitStep"
-      />
+      /> -->
     </form>
   </div>
 </template>
@@ -124,7 +124,7 @@ export default {
 
 <style scoped>
 .content {
-  max-width: 80%;
+  /* max-width: 80%; */
 }
 
 .content__title {
@@ -170,19 +170,6 @@ export default {
 .content__form label {
   pointer-events: none;
   position: relative;
-}
-
-.content__form input[type="submit"] {
-  margin-top: 3rem;
-  background-color: var(--DarkBlue);
-  color: #fff;
-  border-radius: 8px;
-  padding: 0.75rem 0;
-  width: 30%;
-  align-self: flex-end;
-  border: none;
-  transition: 0.3s all ease;
-  cursor: pointer;
 }
 
 .content__form input[type="submit"]:hover {
