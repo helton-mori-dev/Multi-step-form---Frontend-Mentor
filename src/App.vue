@@ -13,14 +13,14 @@
           v-if="currentStepIndex > 0"
           @click="previousStep"
         >
-          Back
+          Go Back
         </button>
         <button
           class="navigation__button next"
           v-if="currentStepIndex < steps.length - 1"
           @click="nextStep"
         >
-          Next
+          Next Step
         </button>
       </div>
     </section>
@@ -121,11 +121,10 @@ export default {
 .grid__data {
   display: grid;
   grid-area: data;
-  grid-template-rows: 4fr 1fr;
-  align-self: center;
-  justify-self: center;
-  max-width: 80%;
+  grid-template-rows: 460px 80px;
+  grid-template-columns: minmax(350px, 500px);
 }
+
 .grid__footer {
   grid-area: footer;
 }
@@ -142,16 +141,33 @@ export default {
   grid-template-rows: 24fr 1fr;
 }
 
+.content {
+  justify-self: center;
+  width: 80%;
+}
+
+.content__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--DarkBlue);
+  margin: 2rem 0 1rem;
+}
+
+.content__subtitle {
+  color: var(--CoolGray);
+  margin-bottom: 2rem;
+}
+
 .navigation {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "back next";
   align-items: end;
+  justify-self: center;
+  width: 80%;
 }
 
 .navigation__button {
-  background-color: var(--DarkBlue);
-  color: #fff;
   border-radius: 8px;
   padding: 0.75rem 0;
   width: 110px;
@@ -159,14 +175,19 @@ export default {
   border: none;
   transition: 0.3s all ease;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .navigation__button.next {
+  background-color: var(--DarkBlue);
+  color: #fff;
   grid-area: next;
   justify-self: end;
 }
 
 .navigation__button.back {
+  background-color: #fff;
+  color: var(--CoolGray);
   grid-area: back;
 }
 </style>

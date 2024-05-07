@@ -123,22 +123,6 @@ export default {
 </script>
 
 <style scoped>
-.content {
-  /* max-width: 80%; */
-}
-
-.content__title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--DarkBlue);
-  margin-bottom: 1rem;
-}
-
-.content__subtitle {
-  color: var(--CoolGray);
-  margin-bottom: 2rem;
-}
-
 .content__form {
   display: flex;
   flex-direction: column;

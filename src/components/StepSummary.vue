@@ -1,14 +1,11 @@
 <template>
-  <div>
-    <!-- Step 4 start -->
-
-    Finishing up Double-check everything looks OK before confirming.
-
-    <!-- Dynamically add subscription and add-on selections here -->
+  <div class="content">
+    <h1 class="content__title">Finishing up</h1>
+    <h2 class="content__subtitle">
+      Double-check everything looks OK before confirming.
+    </h2>
 
     Total (per month/year) Go Back Confirm
-
-    <!-- Step 4 end -->
   </div>
 </template>
 
