@@ -122,7 +122,7 @@ export default {
   display: grid;
   grid-area: data;
   grid-template-rows: 460px 80px;
-  grid-template-columns: minmax(350px, 500px);
+  grid-template-columns: minmax(350px, 600px);
 }
 
 .grid__footer {
@@ -176,6 +176,10 @@ export default {
   transition: 0.3s all ease;
   cursor: pointer;
   font-weight: 700;
+}
+
+.navigation__button:hover {
+  opacity: 0.7;
 }
 
 .navigation__button.next {

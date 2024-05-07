@@ -131,20 +131,21 @@ export default {
 .content__form label {
   font-weight: 500;
   color: var(--DarkBlue);
-  font-size: 0.75rem;
-  margin-bottom: 0.25rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .content__form input:not(input[type="submit"]) {
   border-radius: 5px;
   border-color: var(--LightGray);
-  height: 2rem;
+  height: 3rem;
   border-style: solid;
-  text-indent: 0.5rem;
+  text-indent: 1rem;
   margin-bottom: 1.25rem;
   transition: 0.3s all ease;
   color: var(--DarkBlue);
   font-weight: 600;
+  font-size: 1rem;
 }
 
 .content__form input:not(input[type="submit"]):hover {
