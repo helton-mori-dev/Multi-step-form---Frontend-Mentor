@@ -5,13 +5,19 @@
       You have the option of monthly or yearly billing.
     </h2>
     <form>
-      <div class="select__plan">
-        <input type="radio" name="plan" value="arcade" id="arcade" />
-        <label for="arcade">Arcade <span>$9/mo</span></label>
-        <input type="radio" name="plan" value="advanced" id="advanced" />
-        <label for="advanced">Advanced <span>$12/mo</span></label>
-        <input type="radio" name="plan" value="pro" id="pro" />
-        <label for="pro">Pro <span>$15/mo</span></label>
+      <div class="select-plan">
+        <div class="select-plan__option">
+          <input type="radio" name="plan" value="arcade" id="arcade" />
+          <label for="arcade">Arcade <span>$9/mo</span></label>
+        </div>
+        <div class="select-plan__option">
+          <input type="radio" name="plan" value="advanced" id="advanced" />
+          <label for="advanced">Advanced <span>$12/mo</span></label>
+        </div>
+        <div class="select-plan__option">
+          <input type="radio" name="plan" value="pro" id="pro" />
+          <label for="pro">Pro <span>$15/mo</span></label>
+        </div>
       </div>
       <div class="select__period">
         <label class="switch">
@@ -31,6 +37,54 @@ export default {
 </script>
 
 <style scoped>
+.select-plan {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.select-plan__option {
+  box-shadow: 0 0 0 1px var(--CoolGray);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--DarkBlue);
+  padding: 1rem;
+}
+
+.select-plan__option label {
+  position: relative;
+  display: grid;
+  align-items: start;
+}
+
+.select-plan__option label::before {
+  margin-bottom: 1rem;
+}
+
+.select-plan__option label[for="arcade"]::before {
+  content: url(../assets/images/icon-arcade.svg);
+}
+
+.select-plan__option label[for="advanced"]::before {
+  content: url(../assets/images/icon-advanced.svg);
+}
+
+.select-plan__option label[for="pro"]::before {
+  content: url(../assets/images/icon-pro.svg);
+}
+
+.select-plan__option span {
+  display: block;
+  font-weight: 400;
+  margin-top: 8px;
+  color: var(--CoolGray);
+}
+
+.select-plan__option input {
+  display: none;
+}
+
 .switch {
   position: relative;
   display: inline-block;
