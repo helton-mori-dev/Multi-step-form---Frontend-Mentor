@@ -40,7 +40,8 @@ export default {
 .select-plan {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1rem;
+  grid-gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .select-plan__option {
@@ -50,16 +51,27 @@ export default {
   font-weight: 600;
   color: var(--DarkBlue);
   padding: 1rem;
+  cursor: pointer;
+  transition: 0.3s all ease;
+}
+
+.select-plan__option.selected {
+  background-color: var(--Magnolia);
+}
+
+.select-plan__option:hover {
+  box-shadow: 0 0 0 1px var(--DarkBlue);
 }
 
 .select-plan__option label {
-  position: relative;
   display: grid;
   align-items: start;
+  position: relative;
+  cursor: pointer;
 }
 
 .select-plan__option label::before {
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 .select-plan__option label[for="arcade"]::before {

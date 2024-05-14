@@ -194,4 +194,8 @@ export default {
   color: var(--CoolGray);
   grid-area: back;
 }
+
+.navigation__button.back:hover {
+  color: var(--DarkBlue);
+}
 </style>
