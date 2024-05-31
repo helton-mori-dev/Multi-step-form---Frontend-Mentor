@@ -8,23 +8,29 @@
       <div class="select-plan">
         <div class="select-plan__option">
           <input type="radio" name="plan" value="arcade" id="arcade" />
-          <label for="arcade">Arcade <span>$9/mo</span></label>
+          <label for="arcade">Arcade <span class="price">$9/mo</span></label>
+          <span class="benefit">2 months free</span>
         </div>
         <div class="select-plan__option">
           <input type="radio" name="plan" value="advanced" id="advanced" />
-          <label for="advanced">Advanced <span>$12/mo</span></label>
+          <label for="advanced"
+            >Advanced <span class="price">$12/mo</span></label
+          >
+          <span class="benefit">2 months free</span>
         </div>
         <div class="select-plan__option">
           <input type="radio" name="plan" value="pro" id="pro" />
-          <label for="pro">Pro <span>$15/mo</span></label>
+          <label for="pro">Pro <span class="price">$15/mo</span></label>
+          <span class="benefit">2 months free</span>
         </div>
       </div>
       <div class="select__period">
-        <label class="switch">
+        <span class="period period__monthly checked">Monthly</span>
+        <label class="period__switch">
           <input type="checkbox" />
           <span class="slider round"></span>
-          Monthly Yearly
         </label>
+        <span class="period period__yearly">Yearly</span>
       </div>
     </form>
   </div>
@@ -93,18 +99,46 @@ export default {
   color: var(--CoolGray);
 }
 
+.select-plan__option .benefit {
+  color: var(--DarkBlue);
+  font-size: 0.9rem;
+  display: none;
+}
+
 .select-plan__option input {
   display: none;
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
+.select__period {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 2fr 1fr 2fr;
+  justify-content: center;
+  align-items: center;
 }
 
-.switch input {
+.period {
+  color: var(--LightGray);
+  font-weight: 600;
+}
+
+.period.checked {
+  color: var(--DarkBlue);
+}
+
+.period__switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+  justify-self: center;
+}
+
+.period__monthly {
+  justify-self: end;
+}
+
+.period__switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -117,7 +151,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: var(--DarkBlue);
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -125,35 +159,27 @@ export default {
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 16px;
+  width: 16px;
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: #2196f3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+  /* background-color: #2196f3; */
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  transform: translateX(16px);
 }
 
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
 
 .slider.round:before {
-  border-radius: 50%;
+  border-radius: 100%;
 }
 </style>
