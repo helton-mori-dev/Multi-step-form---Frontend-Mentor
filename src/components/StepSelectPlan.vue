@@ -167,10 +167,6 @@ export default {
   transition: 0.4s;
 }
 
-input:checked + .slider {
-  /* background-color: #2196f3; */
-}
-
 input:checked + .slider:before {
   transform: translateX(16px);
 }
