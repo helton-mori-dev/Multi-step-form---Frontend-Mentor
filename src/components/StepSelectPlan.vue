@@ -6,7 +6,11 @@
     </h2>
     <form>
       <div class="select-plan">
-        <label class="select-plan__option" for="arcade">
+        <label
+          class="select-plan__option"
+          for="arcade"
+          :class="{ active: type === 'arcade' }"
+        >
           <input
             type="radio"
             name="plan"
@@ -17,7 +21,11 @@
           <label for="arcade">Arcade <span class="price">$9/mo</span></label>
           <span class="benefit">2 months free</span>
         </label>
-        <label class="select-plan__option" for="advanced">
+        <label
+          class="select-plan__option"
+          for="advanced"
+          :class="{ active: type === 'advanced' }"
+        >
           <input
             type="radio"
             name="plan"
@@ -30,7 +38,11 @@
           >
           <span class="benefit">2 months free</span>
         </label>
-        <label class="select-plan__option" for="pro">
+        <label
+          class="select-plan__option"
+          for="pro"
+          :class="{ active: type === 'pro' }"
+        >
           <input type="radio" name="plan" value="pro" id="pro" v-model="type" />
           <label for="pro">Pro <span class="price">$15/mo</span></label>
           <span class="benefit">2 months free</span>
@@ -39,7 +51,7 @@
       <div class="select__period">
         <span class="period period__monthly checked">Monthly</span>
         <label class="period__switch">
-          <input type="checkbox" />
+          <input type="checkbox" v-model="period" />
           <span class="slider round"></span>
         </label>
         <span class="period period__yearly">Yearly</span>
@@ -90,7 +102,7 @@ export default {
   transition: 0.3s all ease;
 }
 
-.select-plan__option.selected {
+.select-plan__option.active {
   background-color: var(--Magnolia);
 }
 
@@ -135,7 +147,7 @@ export default {
 }
 
 .select-plan__option input {
-  /* display: none; */
+  display: none;
 }
 
 .select__period {
