@@ -9,6 +9,8 @@ export const store = createStore({
         pickedAddons: [],
       },
       currentStepIndex: 0,
+      periodPlan: "",
+      typePlan: "",
     };
   },
   mutations: {
@@ -23,6 +25,11 @@ export const store = createStore({
     },
     setCurrentStepIndex(state, index) {
       state.currentStepIndex = index;
+    },
+
+    PUSH_PLAN_DATA(state, payload) {
+      state.periodPlan = payload.period;
+      state.typePlan = payload.type;
     },
   },
   actions: {

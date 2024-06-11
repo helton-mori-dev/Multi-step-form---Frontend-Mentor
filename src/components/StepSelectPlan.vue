@@ -6,23 +6,35 @@
     </h2>
     <form>
       <div class="select-plan">
-        <div class="select-plan__option">
-          <input type="radio" name="plan" value="arcade" id="arcade" />
+        <label class="select-plan__option" for="arcade">
+          <input
+            type="radio"
+            name="plan"
+            value="arcade"
+            id="arcade"
+            v-model="type"
+          />
           <label for="arcade">Arcade <span class="price">$9/mo</span></label>
           <span class="benefit">2 months free</span>
-        </div>
-        <div class="select-plan__option">
-          <input type="radio" name="plan" value="advanced" id="advanced" />
+        </label>
+        <label class="select-plan__option" for="advanced">
+          <input
+            type="radio"
+            name="plan"
+            value="advanced"
+            id="advanced"
+            v-model="type"
+          />
           <label for="advanced"
             >Advanced <span class="price">$12/mo</span></label
           >
           <span class="benefit">2 months free</span>
-        </div>
-        <div class="select-plan__option">
-          <input type="radio" name="plan" value="pro" id="pro" />
+        </label>
+        <label class="select-plan__option" for="pro">
+          <input type="radio" name="plan" value="pro" id="pro" v-model="type" />
           <label for="pro">Pro <span class="price">$15/mo</span></label>
           <span class="benefit">2 months free</span>
-        </div>
+        </label>
       </div>
       <div class="select__period">
         <span class="period period__monthly checked">Monthly</span>
@@ -32,13 +44,30 @@
         </label>
         <span class="period period__yearly">Yearly</span>
       </div>
+      <button @click.prevent="refreshPlanData()">push</button>
     </form>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "StepSelectPlan",
+  data() {
+    return { type: "arcade", period: "monthly" };
+  },
+  computed: {
+    ...mapState([""]),
+  },
+  methods: {
+    ...mapMutations(["PUSH_PLAN_DATA"]),
+    refreshPlanData() {
+      this.PUSH_PLAN_DATA({
+        plan: this.type,
+        period: this.period,
+      });
+    },
+  },
 };
 </script>
 
@@ -106,7 +135,7 @@ export default {
 }
 
 .select-plan__option input {
-  display: none;
+  /* display: none; */
 }
 
 .select__period {
