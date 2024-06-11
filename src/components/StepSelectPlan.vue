@@ -48,15 +48,24 @@
           <span class="benefit">2 months free</span>
         </label>
       </div>
+
       <div class="select__period">
-        <span class="period period__monthly checked">Monthly</span>
+        <span
+          class="period period__monthly"
+          :class="{ checked: period === true }"
+          >Monthly</span
+        >
         <label class="period__switch">
           <input type="checkbox" v-model="period" />
           <span class="slider round"></span>
         </label>
-        <span class="period period__yearly">Yearly</span>
+        <span
+          class="period period__yearly"
+          :class="{ checked: period === false }"
+          >Yearly</span
+        >
       </div>
-      <button @click.prevent="refreshPlanData()">push</button>
+      <!-- <button @click.prevent="refreshPlanData()">push</button> -->
     </form>
   </div>
 </template>
@@ -66,7 +75,10 @@ import { mapState, mapMutations } from "vuex";
 export default {
   name: "StepSelectPlan",
   data() {
-    return { type: "arcade", period: "monthly" };
+    return {
+      type: "arcade",
+      period: true, //true == monthly, false == yearly
+    };
   },
   computed: {
     ...mapState([""]),
@@ -161,6 +173,7 @@ export default {
 .period {
   color: var(--LightGray);
   font-weight: 600;
+  transition: 0.3s all ease;
 }
 
 .period.checked {
