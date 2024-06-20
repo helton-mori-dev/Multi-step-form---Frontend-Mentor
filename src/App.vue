@@ -7,6 +7,21 @@
         @update-step="handleUpdateStep"
       ></component>
 
+      <!-- <span
+        style="
+          background-color: aquamarine;
+          position: relative;
+          z-index: 50;
+          height: 30px;
+        "
+      >
+        {{ $store.state.onlineService }}
+        {{ $store.state.largerStorage }}
+        {{ $store.state.customizableProfile }}
+        {{ $store.state.periodPlan }}
+        {{ $store.state.typePlam }}
+      </span> -->
+
       <div class="navigation">
         <button
           class="navigation__button back"

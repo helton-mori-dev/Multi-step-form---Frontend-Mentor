@@ -8,9 +8,12 @@ export const store = createStore({
         selectedPlan: [],
         pickedAddons: [],
       },
-      currentStepIndex: 0,
+      currentStepIndex: 2,
       periodPlan: "",
       typePlan: "",
+      onlineService: "",
+      largerStorage: "",
+      customizableProfile: "",
     };
   },
   mutations: {
@@ -30,6 +33,11 @@ export const store = createStore({
     PUSH_PLAN_DATA(state, payload) {
       state.periodPlan = payload.period;
       state.typePlan = payload.type;
+    },
+    PUSH_ADDONS_DATA(state, payload) {
+      state.onlineService = payload.online;
+      state.largerStorage = payload.storage;
+      state.customizableProfile = payload.profile;
     },
   },
   actions: {

@@ -5,33 +5,71 @@
       Add-ons help enhance your gaming experience.
     </h2>
     <div class="addons">
-      <label class="addons__item" for="online">
-        <input type="checkbox" class="check" id="online" />
+      <label
+        class="addons__item"
+        for="online"
+        :class="{ active: online === true }"
+      >
+        <input type="checkbox" class="check" id="online" v-model="online" />
         <label class="label" for="online">Online service</label
         ><span class="description">Access to multiplayer games</span>
         <span class="price"> +$1/mo </span>
       </label>
-      <label class="addons__item" for="storage">
-        <input type="checkbox" class="check" id="storage" /><label
-          class="label"
-          for="storage"
-          >Larger storage</label
+
+      <label
+        class="addons__item"
+        for="storage"
+        :class="{ active: storage === true }"
+      >
+        <input
+          type="checkbox"
+          class="check"
+          id="storage"
+          v-model="storage"
+        /><label class="label" for="storage">Larger storage</label
         ><span class="description">Extra 1TB of cloud save</span>
         <span class="price"> +$2/mo </span>
       </label>
-      <label class="addons__item" for="profile">
-        <input type="checkbox" class="check" id="profile" />
-        <label class="label" for="profile">Customizable Profile</label
+
+      <label
+        class="addons__item"
+        for="profile"
+        :class="{ active: profile === true }"
+      >
+        <input type="checkbox" class="check" id="profile" v-model="profile" />
+        <label class="label" for="profile">Profile</label
         ><span class="description">Custom theme on your profile</span>
         <span class="price"> +$2/mo </span>
       </label>
+      <!-- <button @click.prevent="refreshAddonData()">push</button> -->
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "StepPickAddon",
+  data() {
+    return {
+      online: false,
+      storage: false,
+      profile: false,
+    };
+  },
+  computed: {
+    ...mapState([""]),
+  },
+  methods: {
+    ...mapMutations(["PUSH_ADDONS_DATA"]),
+    refreshAddonData() {
+      this.PUSH_ADDONS_DATA({
+        online: this.online,
+        storage: this.storage,
+        profile: this.profile,
+      });
+    },
+  },
 };
 </script>
 
@@ -53,6 +91,11 @@ export default {
 
   grid-template-columns: 1fr 8fr 2fr;
   cursor: pointer;
+  transition: 0.3s all ease;
+}
+
+.addons__item.active {
+  background-color: var(--Magnolia);
 }
 
 .check {
