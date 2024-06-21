@@ -8,12 +8,12 @@ export const store = createStore({
         selectedPlan: [],
         pickedAddons: [],
       },
-      currentStepIndex: 2,
+      currentStepIndex: 3,
       periodPlan: "",
       typePlan: "",
-      onlineService: "",
-      largerStorage: "",
-      customizableProfile: "",
+      onlineService: true,
+      largerStorage: true,
+      customizableProfile: true,
     };
   },
   mutations: {
