@@ -9,14 +9,14 @@
         <label
           class="select-plan__option"
           for="arcade"
-          :class="{ active: type === 'arcade' }"
+          :class="{ active: planType === 'arcade' }"
         >
           <input
             type="radio"
             name="plan"
             value="arcade"
             id="arcade"
-            v-model="type"
+            v-model="planType"
           />
           <label for="arcade">Arcade <span class="price">$9/mo</span></label>
           <span class="benefit">2 months free</span>
@@ -24,14 +24,14 @@
         <label
           class="select-plan__option"
           for="advanced"
-          :class="{ active: type === 'advanced' }"
+          :class="{ active: planType === 'advanced' }"
         >
           <input
             type="radio"
             name="plan"
             value="advanced"
             id="advanced"
-            v-model="type"
+            v-model="planType"
           />
           <label for="advanced"
             >Advanced <span class="price">$12/mo</span></label
@@ -41,9 +41,15 @@
         <label
           class="select-plan__option"
           for="pro"
-          :class="{ active: type === 'pro' }"
+          :class="{ active: planType === 'pro' }"
         >
-          <input type="radio" name="plan" value="pro" id="pro" v-model="type" />
+          <input
+            type="radio"
+            name="plan"
+            value="pro"
+            id="pro"
+            v-model="planType"
+          />
           <label for="pro">Pro <span class="price">$15/mo</span></label>
           <span class="benefit">2 months free</span>
         </label>
@@ -65,7 +71,7 @@
           >Yearly</span
         >
       </div>
-      <!-- <button @click.prevent="refreshPlanData()">push</button> -->
+      <button @click.prevent="refreshPlanData()">push</button>
     </form>
   </div>
 </template>
@@ -76,8 +82,8 @@ export default {
   name: "StepSelectPlan",
   data() {
     return {
-      type: "arcade",
-      period: true, //true == monthly, false == yearly
+      planType: "",
+      period: null,
     };
   },
   computed: {
@@ -87,7 +93,7 @@ export default {
     ...mapMutations(["PUSH_PLAN_DATA"]),
     refreshPlanData() {
       this.PUSH_PLAN_DATA({
-        plan: this.type,
+        plan: this.planType,
         period: this.period,
       });
     },

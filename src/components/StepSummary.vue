@@ -8,7 +8,7 @@
     <div class="summary">
       <div class="summary__plan">
         <h3 class="summary__plan-title">
-          {{ $store.state.typePlan || "Arcade" }}
+          {{ $store.state.selectedPlan || "Arcade" }}
         </h3>
         <a href="#" class="summary__plan-button">Change</a>
       </div>

@@ -52,9 +52,9 @@ export default {
   name: "StepPickAddon",
   data() {
     return {
-      online: false,
-      storage: false,
-      profile: false,
+      online: this.$store.state.onlineService,
+      storage: this.$store.state.largerStorage,
+      profile: this.$store.state.customizableProfile,
     };
   },
   computed: {

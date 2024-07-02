@@ -2,24 +2,27 @@
   <div class="container grid grid-tempate-area-main">
     <SidebarForm />
     <section class="grid__data">
-      <component
-        :is="currentStepComponent"
-        @update-step="handleUpdateStep"
-      ></component>
+      <KeepAlive>
+        <component
+          :is="currentStepComponent"
+          @update-step="handleUpdateStep"
+        ></component>
+      </KeepAlive>
+      {{ $store.state.selectedPlan }}
 
       <!-- <span
         style="
           background-color: aquamarine;
-          position: relative;
-          z-index: 50;
+          position: absolute;
+          z-index: 10;
           height: 30px;
         "
       >
-        {{ $store.state.onlineService }}
-        {{ $store.state.largerStorage }}
-        {{ $store.state.customizableProfile }}
-        {{ $store.state.periodPlan }}
-        {{ $store.state.typePlam }}
+        <p>onlineService - {{ $store.state.onlineService }}</p>
+        <p>largerStorage - {{ $store.state.largerStorage }}</p>
+        <p>customizableProfile - {{ $store.state.customizableProfile }}</p>
+        <p>periodPlan - {{ $store.state.periodPlan }}</p>
+        <p>selectedPlan - {{ $store.state.selectedPlan }}</p>
       </span> -->
 
       <div class="navigation">

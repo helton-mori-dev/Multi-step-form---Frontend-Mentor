@@ -8,31 +8,31 @@ export const store = createStore({
         selectedPlan: [],
         pickedAddons: [],
       },
-      currentStepIndex: 3,
-      periodPlan: "",
-      typePlan: "",
+      currentStepIndex: 1,
+      selectedPlan: "arcade",
+      periodPlan: true, //true == monthly, false == yearly
       onlineService: true,
       largerStorage: true,
-      customizableProfile: true,
+      // customizableProfile: true,
     };
   },
   mutations: {
-    updataPersonalInfo(state, info) {
-      state.formData.personalInfo = info;
-    },
-    selectPlan(state, plan) {
-      state.formData.selectedPlan = plan;
-    },
-    pickAddons(state, addons) {
-      state.formData.pickedAddons = addons;
-    },
+    // updataPersonalInfo(state, info) {
+    //   state.formData.personalInfo = info;
+    // },
+    // selectPlan(state, plan) {
+    //   state.formData.selectedPlan = plan;
+    // },
+    // pickAddons(state, addons) {
+    //   state.formData.pickedAddons = addons;
+    // },
     setCurrentStepIndex(state, index) {
       state.currentStepIndex = index;
     },
 
     PUSH_PLAN_DATA(state, payload) {
+      state.selectedPlan = payload.plan;
       state.periodPlan = payload.period;
-      state.typePlan = payload.type;
     },
     PUSH_ADDONS_DATA(state, payload) {
       state.onlineService = payload.online;
