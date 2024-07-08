@@ -8,12 +8,12 @@ export const store = createStore({
         selectedPlan: [],
         pickedAddons: [],
       },
-      currentStepIndex: 1,
+      currentStepIndex: 2,
       selectedPlan: "arcade",
-      periodPlan: true, //true == monthly, false == yearly
-      onlineService: true,
-      largerStorage: true,
-      // customizableProfile: true,
+      periodPlan: true, //false == monthly, true == yearly
+      onlineService: false,
+      largerStorage: false,
+      customizableProfile: false,
     };
   },
   mutations: {
@@ -28,16 +28,6 @@ export const store = createStore({
     // },
     setCurrentStepIndex(state, index) {
       state.currentStepIndex = index;
-    },
-
-    PUSH_PLAN_DATA(state, payload) {
-      state.selectedPlan = payload.plan;
-      state.periodPlan = payload.period;
-    },
-    PUSH_ADDONS_DATA(state, payload) {
-      state.onlineService = payload.online;
-      state.largerStorage = payload.storage;
-      state.customizableProfile = payload.profile;
     },
   },
   actions: {

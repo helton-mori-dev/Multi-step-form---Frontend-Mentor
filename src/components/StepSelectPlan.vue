@@ -71,33 +71,21 @@
           >Yearly</span
         >
       </div>
-      <button @click.prevent="refreshPlanData()">push</button>
     </form>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
 export default {
   name: "StepSelectPlan",
   data() {
     return {
-      planType: "",
-      period: null,
+      planType: this.$store.state.selectedPlan,
+      period: this.$store.state.periodPlan,
     };
   },
-  computed: {
-    ...mapState([""]),
-  },
-  methods: {
-    ...mapMutations(["PUSH_PLAN_DATA"]),
-    refreshPlanData() {
-      this.PUSH_PLAN_DATA({
-        plan: this.planType,
-        period: this.period,
-      });
-    },
-  },
+  computed: {},
+  methods: {},
 };
 </script>
 
@@ -225,10 +213,11 @@ export default {
   bottom: 4px;
   background-color: white;
   transition: 0.4s;
+  left: 20px;
 }
 
 input:checked + .slider:before {
-  transform: translateX(16px);
+  left: 4px;
 }
 
 .slider.round {

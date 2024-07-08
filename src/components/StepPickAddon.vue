@@ -41,13 +41,11 @@
         ><span class="description">Custom theme on your profile</span>
         <span class="price"> +$2/mo </span>
       </label>
-      <!-- <button @click.prevent="refreshAddonData()">push</button> -->
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
 export default {
   name: "StepPickAddon",
   data() {
@@ -57,19 +55,8 @@ export default {
       profile: this.$store.state.customizableProfile,
     };
   },
-  computed: {
-    ...mapState([""]),
-  },
-  methods: {
-    ...mapMutations(["PUSH_ADDONS_DATA"]),
-    refreshAddonData() {
-      this.PUSH_ADDONS_DATA({
-        online: this.online,
-        storage: this.storage,
-        profile: this.profile,
-      });
-    },
-  },
+  computed: {},
+  methods: {},
 };
 </script>
 

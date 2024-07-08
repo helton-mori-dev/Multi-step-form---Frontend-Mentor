@@ -8,22 +8,6 @@
           @update-step="handleUpdateStep"
         ></component>
       </KeepAlive>
-      {{ $store.state.selectedPlan }}
-
-      <!-- <span
-        style="
-          background-color: aquamarine;
-          position: absolute;
-          z-index: 10;
-          height: 30px;
-        "
-      >
-        <p>onlineService - {{ $store.state.onlineService }}</p>
-        <p>largerStorage - {{ $store.state.largerStorage }}</p>
-        <p>customizableProfile - {{ $store.state.customizableProfile }}</p>
-        <p>periodPlan - {{ $store.state.periodPlan }}</p>
-        <p>selectedPlan - {{ $store.state.selectedPlan }}</p>
-      </span> -->
 
       <div class="navigation">
         <button

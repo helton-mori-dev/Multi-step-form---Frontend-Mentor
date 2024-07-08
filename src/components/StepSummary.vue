@@ -8,19 +8,23 @@
     <div class="summary">
       <div class="summary__plan">
         <h3 class="summary__plan-title">
-          {{ $store.state.selectedPlan || "Arcade" }}
+          {{ $store.state.selectedPlan }}
         </h3>
         <a href="#" class="summary__plan-button">Change</a>
       </div>
       <div class="summary__addon">
+        teste
         <div class="summary__addon-online" v-if="$store.state.onlineService">
+          teste2
           <div class="summary__addon-line">
             <span>Online Service</span><span>+1/mo</span>
+            {{ $store.state.onlineService }}
           </div>
         </div>
         <div class="summary__addon-storage" v-if="$store.state.largerStorage">
           <div class="summary__addon-line">
             <span>Larger Storage</span><span>+2/mo</span>
+            {{ $store.state.largerStorage }}
           </div>
         </div>
         <div
