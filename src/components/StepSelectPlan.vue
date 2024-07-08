@@ -9,65 +9,84 @@
         <label
           class="select-plan__option"
           for="arcade"
-          :class="{ active: planType === 'arcade' }"
+          :class="{ active: $store.state.selectedPlan === 'arcade' }"
         >
           <input
             type="radio"
             name="plan"
             value="arcade"
             id="arcade"
-            v-model="planType"
+            v-model="$store.state.selectedPlan"
           />
-          <label for="arcade">Arcade <span class="price">$9/mo</span></label>
-          <span class="benefit">2 months free</span>
+          <label for="arcade"
+            >Arcade
+            <span class="price"
+              >$9{{ $store.state.periodPlan ? "/mo " : "/yr" }}</span
+            ></label
+          >
+          <span class="benefit" v-if="!$store.state.periodPlan"
+            >2 months free</span
+          >
         </label>
         <label
           class="select-plan__option"
           for="advanced"
-          :class="{ active: planType === 'advanced' }"
+          :class="{ active: $store.state.selectedPlan === 'advanced' }"
         >
           <input
             type="radio"
             name="plan"
             value="advanced"
             id="advanced"
-            v-model="planType"
+            v-model="$store.state.selectedPlan"
           />
           <label for="advanced"
-            >Advanced <span class="price">$12/mo</span></label
+            >Advanced
+            <span class="price"
+              >$12{{ $store.state.periodPlan ? "/mo " : "/yr" }}</span
+            ></label
           >
-          <span class="benefit">2 months free</span>
+          <span class="benefit" v-if="!$store.state.periodPlan"
+            >2 months free</span
+          >
         </label>
         <label
           class="select-plan__option"
           for="pro"
-          :class="{ active: planType === 'pro' }"
+          :class="{ active: $store.state.selectedPlan === 'pro' }"
         >
           <input
             type="radio"
             name="plan"
             value="pro"
             id="pro"
-            v-model="planType"
+            v-model="$store.state.selectedPlan"
           />
-          <label for="pro">Pro <span class="price">$15/mo</span></label>
-          <span class="benefit">2 months free</span>
+          <label for="pro"
+            >Pro
+            <span class="price"
+              >$15{{ $store.state.periodPlan ? "/mo " : "/yr" }}</span
+            ></label
+          >
+          <span class="benefit" v-if="!$store.state.periodPlan"
+            >2 months free</span
+          >
         </label>
       </div>
 
       <div class="select__period">
         <span
           class="period period__monthly"
-          :class="{ checked: period === true }"
+          :class="{ checked: $store.state.periodPlan === true }"
           >Monthly</span
         >
         <label class="period__switch">
-          <input type="checkbox" v-model="period" />
+          <input type="checkbox" v-model="$store.state.periodPlan" />
           <span class="slider round"></span>
         </label>
         <span
           class="period period__yearly"
-          :class="{ checked: period === false }"
+          :class="{ checked: $store.state.periodPlan === false }"
           >Yearly</span
         >
       </div>
@@ -80,8 +99,8 @@ export default {
   name: "StepSelectPlan",
   data() {
     return {
-      planType: this.$store.state.selectedPlan,
-      period: this.$store.state.periodPlan,
+      // planType: this.$store.state.selectedPlan,
+      // period: this.$store.state.periodPlan,
     };
   },
   computed: {},
@@ -149,7 +168,6 @@ export default {
 .select-plan__option .benefit {
   color: var(--DarkBlue);
   font-size: 0.9rem;
-  display: none;
 }
 
 .select-plan__option input {
