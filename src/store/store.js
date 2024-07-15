@@ -3,12 +3,12 @@ import { createStore } from "vuex";
 export const store = createStore({
   state() {
     return {
-      formData: {
-        personalInfo: {},
-        selectedPlan: [],
-        pickedAddons: [],
-      },
-      currentStepIndex: 2,
+      // formData: {
+      //   personalInfo: {},
+      //   selectedPlan: [],
+      //   pickedAddons: [],
+      // },
+      currentStepIndex: 1,
       selectedPlan: "arcade",
       periodPlan: true, //false == monthly, true == yearly
       onlineService: false,
@@ -26,6 +26,14 @@ export const store = createStore({
     // pickAddons(state, addons) {
     //   state.formData.pickedAddons = addons;
     // },
+    CHANGE_PLAN(state, payload) {
+      console.log("selectedPlan", payload);
+      state.selectedPlan = payload;
+    },
+    CHANGE_PERIOD(state, payload) {
+      console.log("periodPlan", payload);
+      state.periodPlan = payload;
+    },
     setCurrentStepIndex(state, index) {
       state.currentStepIndex = index;
     },

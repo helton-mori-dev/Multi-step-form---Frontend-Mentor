@@ -9,84 +9,78 @@
         <label
           class="select-plan__option"
           for="arcade"
-          :class="{ active: $store.state.selectedPlan === 'arcade' }"
+          :class="{ active: selectedPlan === 'arcade' }"
         >
           <input
             type="radio"
             name="plan"
             value="arcade"
             id="arcade"
-            v-model="$store.state.selectedPlan"
+            v-model="planChange"
           />
           <label for="arcade"
             >Arcade
             <span class="price"
-              >$9{{ $store.state.periodPlan ? "/mo " : "/yr" }}</span
+              >$9{{ periodPlan ? "/mo " : "/yr" }}</span
             ></label
           >
-          <span class="benefit" v-if="!$store.state.periodPlan"
-            >2 months free</span
-          >
+          <span class="benefit" v-if="!periodPlan">2 months free</span>
         </label>
         <label
           class="select-plan__option"
           for="advanced"
-          :class="{ active: $store.state.selectedPlan === 'advanced' }"
+          :class="{ active: selectedPlan === 'advanced' }"
         >
           <input
             type="radio"
             name="plan"
             value="advanced"
             id="advanced"
-            v-model="$store.state.selectedPlan"
+            v-model="planChange"
           />
           <label for="advanced"
             >Advanced
             <span class="price"
-              >$12{{ $store.state.periodPlan ? "/mo " : "/yr" }}</span
+              >$12{{ periodPlan ? "/mo " : "/yr" }}</span
             ></label
           >
-          <span class="benefit" v-if="!$store.state.periodPlan"
-            >2 months free</span
-          >
+          <span class="benefit" v-if="!periodPlan">2 months free</span>
         </label>
         <label
           class="select-plan__option"
           for="pro"
-          :class="{ active: $store.state.selectedPlan === 'pro' }"
+          :class="{ active: selectedPlan === 'pro' }"
         >
           <input
             type="radio"
             name="plan"
             value="pro"
             id="pro"
-            v-model="$store.state.selectedPlan"
+            v-model="planChange"
           />
           <label for="pro"
             >Pro
             <span class="price"
-              >$15{{ $store.state.periodPlan ? "/mo " : "/yr" }}</span
+              >$15{{ periodPlan ? "/mo " : "/yr" }}</span
             ></label
           >
-          <span class="benefit" v-if="!$store.state.periodPlan"
-            >2 months free</span
-          >
+          <span class="benefit" v-if="!periodPlan">2 months free</span>
         </label>
       </div>
 
       <div class="select__period">
         <span
           class="period period__monthly"
-          :class="{ checked: $store.state.periodPlan === true }"
+          :class="{ checked: periodPlan === true }"
           >Monthly</span
         >
         <label class="period__switch">
-          <input type="checkbox" v-model="$store.state.periodPlan" />
+          <input type="checkbox" v-model="periodChange" />
           <span class="slider round"></span>
         </label>
         <span
           class="period period__yearly"
-          :class="{ checked: $store.state.periodPlan === false }"
+          :class="{ checked: periodPlan === false }"
           >Yearly</span
         >
       </div>
@@ -95,16 +89,34 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "StepSelectPlan",
   data() {
-    return {
-      // planType: this.$store.state.selectedPlan,
-      // period: this.$store.state.periodPlan,
-    };
+    return {};
   },
-  computed: {},
-  methods: {},
+  computed: {
+    ...mapState(["selectedPlan", "periodPlan"]),
+    planChange: {
+      get() {
+        return this.selectedPlan;
+      },
+      set(value) {
+        this.$store.commit("CHANGE_PLAN", value);
+      },
+    },
+    periodChange: {
+      get() {
+        return this.periodPlan;
+      },
+      set(value) {
+        this.$store.commit("CHANGE_PERIOD", value);
+      },
+    },
+  },
+  methods: {
+    // ...mapMutations(["CHANGE_PLAN", "CHANGE_PERIOD"]),
+  },
 };
 </script>
 
