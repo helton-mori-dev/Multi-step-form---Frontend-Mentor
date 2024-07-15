@@ -8,9 +8,14 @@
       <label
         class="addons__item"
         for="online"
-        :class="{ active: online === true }"
+        :class="{ active: this.$store.state.onlineService === true }"
       >
-        <input type="checkbox" class="check" id="online" v-model="online" />
+        <input
+          type="checkbox"
+          class="check"
+          id="online"
+          v-model="onlineChange"
+        />
         <label class="label" for="online">Online service</label
         ><span class="description">Access to multiplayer games</span>
         <span class="price"> +$1/mo </span>
@@ -19,13 +24,13 @@
       <label
         class="addons__item"
         for="storage"
-        :class="{ active: storage === true }"
+        :class="{ active: this.$store.state.largerStorage === true }"
       >
         <input
           type="checkbox"
           class="check"
           id="storage"
-          v-model="storage"
+          v-model="storageChange"
         /><label class="label" for="storage">Larger storage</label
         ><span class="description">Extra 1TB of cloud save</span>
         <span class="price"> +$2/mo </span>
@@ -34,9 +39,14 @@
       <label
         class="addons__item"
         for="profile"
-        :class="{ active: profile === true }"
+        :class="{ active: this.$store.state.customizableProfile === true }"
       >
-        <input type="checkbox" class="check" id="profile" v-model="profile" />
+        <input
+          type="checkbox"
+          class="check"
+          id="profile"
+          v-model="profileChange"
+        />
         <label class="label" for="profile">Profile</label
         ><span class="description">Custom theme on your profile</span>
         <span class="price"> +$2/mo </span>
@@ -49,13 +59,34 @@
 export default {
   name: "StepPickAddon",
   data() {
-    return {
-      online: this.$store.state.onlineService,
-      storage: this.$store.state.largerStorage,
-      profile: this.$store.state.customizableProfile,
-    };
+    return {};
   },
-  computed: {},
+  computed: {
+    onlineChange: {
+      get() {
+        return this.$store.state.onlineService;
+      },
+      set(value) {
+        this.$store.commit("CHANGE_ONLINE", value);
+      },
+    },
+    storageChange: {
+      get() {
+        return this.$store.state.largerStorage;
+      },
+      set(value) {
+        this.$store.commit("CHANGE_STORAGE", value);
+      },
+    },
+    profileChange: {
+      get() {
+        return this.$store.state.customizableProfile;
+      },
+      set(value) {
+        this.$store.commit("CHANGE_PROFILE", value);
+      },
+    },
+  },
   methods: {},
 };
 </script>

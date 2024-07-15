@@ -8,7 +8,7 @@ export const store = createStore({
       //   selectedPlan: [],
       //   pickedAddons: [],
       // },
-      currentStepIndex: 1,
+      currentStepIndex: 2,
       selectedPlan: "arcade",
       periodPlan: true, //false == monthly, true == yearly
       onlineService: false,
@@ -33,6 +33,18 @@ export const store = createStore({
     CHANGE_PERIOD(state, payload) {
       console.log("periodPlan", payload);
       state.periodPlan = payload;
+    },
+    CHANGE_ONLINE(state, payload) {
+      console.log("onlineChange", payload);
+      state.onlineService = payload;
+    },
+    CHANGE_STORAGE(state, payload) {
+      console.log("largerStorage", payload);
+      state.largerStorage = payload;
+    },
+    CHANGE_PROFILE(state, payload) {
+      console.log("customizableProfile", payload);
+      state.customizableProfile = payload;
     },
     setCurrentStepIndex(state, index) {
       state.currentStepIndex = index;
