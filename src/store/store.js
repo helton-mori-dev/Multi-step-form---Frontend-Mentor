@@ -8,12 +8,12 @@ export const store = createStore({
       //   selectedPlan: [],
       //   pickedAddons: [],
       // },
-      currentStepIndex: 2,
+      currentStepIndex: 3,
       selectedPlan: "arcade",
-      periodPlan: true, //false == monthly, true == yearly
-      onlineService: false,
-      largerStorage: false,
-      customizableProfile: false,
+      periodPlan: false, //false == monthly, true == yearly
+      onlineService: true,
+      largerStorage: true,
+      customizableProfile: true,
     };
   },
   mutations: {
@@ -27,23 +27,18 @@ export const store = createStore({
     //   state.formData.pickedAddons = addons;
     // },
     CHANGE_PLAN(state, payload) {
-      console.log("selectedPlan", payload);
       state.selectedPlan = payload;
     },
     CHANGE_PERIOD(state, payload) {
-      console.log("periodPlan", payload);
       state.periodPlan = payload;
     },
     CHANGE_ONLINE(state, payload) {
-      console.log("onlineChange", payload);
       state.onlineService = payload;
     },
     CHANGE_STORAGE(state, payload) {
-      console.log("largerStorage", payload);
       state.largerStorage = payload;
     },
     CHANGE_PROFILE(state, payload) {
-      console.log("customizableProfile", payload);
       state.customizableProfile = payload;
     },
     setCurrentStepIndex(state, index) {
