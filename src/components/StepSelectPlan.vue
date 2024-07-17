@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "StepSelectPlan",
   data() {
@@ -102,7 +102,7 @@ export default {
         return this.selectedPlan;
       },
       set(value) {
-        this.$store.commit("CHANGE_PLAN", value);
+        this.CHANGE_PLAN(value);
       },
     },
     periodChange: {
@@ -110,12 +110,12 @@ export default {
         return this.periodPlan;
       },
       set(value) {
-        this.$store.commit("CHANGE_PERIOD", value);
+        this.CHANGE_PERIOD(value);
       },
     },
   },
   methods: {
-    // ...mapMutations(["CHANGE_PLAN", "CHANGE_PERIOD"]),
+    ...mapMutations(["CHANGE_PLAN", "CHANGE_PERIOD"]),
   },
 };
 </script>

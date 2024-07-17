@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "StepPickAddon",
   data() {
@@ -74,7 +74,7 @@ export default {
         return this.onlineService;
       },
       set(value) {
-        this.$store.commit("CHANGE_ONLINE", value);
+        this.CHANGE_ONLINE(value);
       },
     },
     storageChange: {
@@ -82,7 +82,7 @@ export default {
         return this.largerStorage;
       },
       set(value) {
-        this.$store.commit("CHANGE_STORAGE", value);
+        this.CHANGE_STORAGE(value);
       },
     },
     profileChange: {
@@ -90,11 +90,13 @@ export default {
         return this.customizableProfile;
       },
       set(value) {
-        this.$store.commit("CHANGE_PROFILE", value);
+        this.CHANGE_PROFILE(value);
       },
     },
   },
-  methods: {},
+  methods: {
+    ...mapMutations(["CHANGE_STORAGE", "CHANGE_PROFILE", "CHANGE_ONLINE"]),
+  },
 };
 </script>
 
