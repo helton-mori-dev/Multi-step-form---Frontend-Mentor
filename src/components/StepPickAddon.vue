@@ -18,7 +18,9 @@
         />
         <label class="label" for="online">Online service</label
         ><span class="description">Access to multiplayer games</span>
-        <span class="price"> +$1/mo </span>
+        <span class="price">
+          +${{ $store.state.periodPlan ? `1/mo` : `10/yr` }}
+        </span>
       </label>
 
       <label
@@ -33,7 +35,9 @@
           v-model="storageChange"
         /><label class="label" for="storage">Larger storage</label
         ><span class="description">Extra 1TB of cloud save</span>
-        <span class="price"> +$2/mo </span>
+        <span class="price">
+          +${{ $store.state.periodPlan ? `2/mo` : `20/yr` }}
+        </span>
       </label>
 
       <label
@@ -49,7 +53,9 @@
         />
         <label class="label" for="profile">Profile</label
         ><span class="description">Custom theme on your profile</span>
-        <span class="price"> +$2/mo </span>
+        <span class="price">
+          +${{ $store.state.periodPlan ? `2/mo` : `20/yr` }}
+        </span>
       </label>
     </div>
   </div>

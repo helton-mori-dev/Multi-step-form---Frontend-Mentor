@@ -12,27 +12,35 @@
             $store.state.periodPlan ? "Monthly" : "Yearly"
           }})
         </h3>
-        <span class="summary__plan-select"
-          ><a href="#" class="summary__plan-button">Change</a>
-          <span class="summary__plan-value">{{
-            $store.state.periodPlan ? "$9/mo" : "$90/yr"
-          }}</span></span
-        >
+        <span class="summary__plan-select">
+          <a href="#" class="summary__plan-button">Change</a>
+          <span class="summary__plan-value">
+            {{
+              $store.state.periodPlan
+                ? `$${arcadeMonth}/mo`
+                : `$${arcadeYear}/yr`
+            }}
+          </span>
+        </span>
       </div>
       <div class="summary__addon">
         <div class="summary__addon-online" v-if="$store.state.onlineService">
           <div class="summary__addon-line">
             <span class="summary__addon-label">Online Service</span
             ><span class="summary__addon-value">{{
-              $store.state.periodPlan ? "$1/mo" : "$10/yr"
+              $store.state.periodPlan
+                ? `$${onlineMonth}/mo`
+                : `$${onlineYear}/yr`
             }}</span>
           </div>
         </div>
         <div class="summary__addon-storage" v-if="$store.state.largerStorage">
           <div class="summary__addon-line">
-            <span class="summary__addon-label">Larger Storage</span
-            ><span class="summary__addon-value">{{
-              $store.state.periodPlan ? "$2/mo" : "$20/yr"
+            <span class="summary__addon-label">Larger Storage</span>
+            <span class="summary__addon-value">{{
+              $store.state.periodPlan
+                ? `$${storageMonth}/mo`
+                : `$${storageYear}/yr`
             }}</span>
           </div>
         </div>
@@ -41,20 +49,26 @@
           v-if="$store.state.customizableProfile"
         >
           <div class="summary__addon-line">
-            <span class="summary__addon-label">Customizable Profile</span
-            ><span class="summary__addon-value">{{
-              $store.state.periodPlan ? "$2/mo" : "$20/yr"
-            }}</span>
+            <span class="summary__addon-label">Customizable Profile</span>
+            <span class="summary__addon-value"
+              >{{
+                $store.state.periodPlan
+                  ? `$${customizableMonth}/mo`
+                  : `$${customizableYear}/yr`
+              }}
+            </span>
           </div>
         </div>
       </div>
       <div class="summary__total">
         <div class="summary__total-line">
           <span class="summary__total-label"
-            >Total (per
-            {{ $store.state.periodPlan ? "month / " : "year" }})</span
+            >Total (per {{ $store.state.periodPlan ? "month" : "year" }})</span
           >
-          <span class="summary__total-value">+12/mo</span>
+          <span class="summary__total-value"
+            >+{{ summaryTotal
+            }}{{ $store.state.periodPlan ? "mo" : "yr" }}</span
+          >
         </div>
       </div>
     </div>
@@ -81,9 +95,47 @@ export default {
     };
   },
   computed: {
-    // summaryTotal(){
-    //   return this.$store.state.
-    // }
+    summaryTotal() {
+      let total = 0;
+      switch (this.$store.state.selectedPlan) {
+        case "arcade":
+          total += this.$store.state.periodPlan
+            ? this.arcadeMonth
+            : this.arcadeYear;
+
+          break;
+
+        case "advanced":
+          total += this.$store.state.periodPlan
+            ? this.advancedMonth
+            : this.advancedYear;
+
+          break;
+
+        case "pro":
+          total += this.$store.state.periodPlan ? this.proMonth : this.proYear;
+          break;
+      }
+
+      if (this.$store.state.onlineService) {
+        total += this.$store.state.periodPlan
+          ? this.onlineMonth
+          : this.onlineYear;
+      }
+
+      if (this.$store.state.largerStorage) {
+        total += this.$store.state.periodPlan
+          ? this.storageMonth
+          : this.storageYear;
+      }
+
+      if (this.$store.state.customizableProfile) {
+        total += this.$store.state.periodPlan
+          ? this.storageMonth
+          : this.storageYear;
+      }
+      return total;
+    },
   },
 };
 </script>

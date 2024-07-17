@@ -8,12 +8,12 @@ export const store = createStore({
       //   selectedPlan: [],
       //   pickedAddons: [],
       // },
-      currentStepIndex: 3,
+      currentStepIndex: 1,
       selectedPlan: "arcade",
-      periodPlan: false, //false == monthly, true == yearly
-      onlineService: true,
-      largerStorage: true,
-      customizableProfile: true,
+      periodPlan: true, //true == monthly, false == yearly
+      onlineService: false,
+      largerStorage: false,
+      customizableProfile: false,
     };
   },
   mutations: {

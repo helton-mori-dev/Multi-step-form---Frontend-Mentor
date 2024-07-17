@@ -21,7 +21,7 @@
           <label for="arcade"
             >Arcade
             <span class="price"
-              >$9{{ periodPlan ? "/mo " : "/yr" }}</span
+              >$9{{ periodPlan ? "/mo " : "0/yr" }}</span
             ></label
           >
           <span class="benefit" v-if="!periodPlan">2 months free</span>
@@ -41,7 +41,7 @@
           <label for="advanced"
             >Advanced
             <span class="price"
-              >$12{{ periodPlan ? "/mo " : "/yr" }}</span
+              >$12{{ periodPlan ? "/mo " : "0/yr" }}</span
             ></label
           >
           <span class="benefit" v-if="!periodPlan">2 months free</span>
@@ -61,7 +61,7 @@
           <label for="pro"
             >Pro
             <span class="price"
-              >$15{{ periodPlan ? "/mo " : "/yr" }}</span
+              >$15{{ periodPlan ? "/mo " : "0/yr" }}</span
             ></label
           >
           <span class="benefit" v-if="!periodPlan">2 months free</span>
