@@ -13,7 +13,7 @@
         <span class="summary__plan-select">
           <a href="#" class="summary__plan-button">Change</a>
           <span class="summary__plan-value">
-            {{ periodPlan ? `$${arcadeMonth}/mo` : `$${arcadeYear}/yr` }}
+            {{ planPrice }}
           </span>
         </span>
       </div>
@@ -119,6 +119,24 @@ export default {
         total += this.periodPlan ? this.storageMonth : this.storageYear;
       }
       return total;
+    },
+    planPrice() {
+      const period = this.periodPlan ? "mo" : "yr";
+      let price = 0;
+
+      switch (this.selectedPlan) {
+        case "arcade":
+          price = this.periodPlan ? this.arcadeMonth : this.arcadeYear;
+          break;
+        case "advanced":
+          price = this.periodPlan ? this.advancedMonth : this.advancedYear;
+          break;
+        case "pro":
+          price = this.periodPlan ? this.proMonth : this.proYear;
+          break;
+      }
+
+      return `$${price}/${period}`;
     },
   },
 };
