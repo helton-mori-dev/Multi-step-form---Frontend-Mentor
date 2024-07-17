@@ -8,51 +8,38 @@
     <div class="summary">
       <div class="summary__plan">
         <h3 class="summary__plan-title">
-          {{ $store.state.selectedPlan }} ({{
-            $store.state.periodPlan ? "Monthly" : "Yearly"
-          }})
+          {{ selectedPlan }} ({{ periodPlan ? "Monthly" : "Yearly" }})
         </h3>
         <span class="summary__plan-select">
           <a href="#" class="summary__plan-button">Change</a>
           <span class="summary__plan-value">
-            {{
-              $store.state.periodPlan
-                ? `$${arcadeMonth}/mo`
-                : `$${arcadeYear}/yr`
-            }}
+            {{ periodPlan ? `$${arcadeMonth}/mo` : `$${arcadeYear}/yr` }}
           </span>
         </span>
       </div>
       <div class="summary__addon">
-        <div class="summary__addon-online" v-if="$store.state.onlineService">
+        <div class="summary__addon-online" v-if="onlineService">
           <div class="summary__addon-line">
             <span class="summary__addon-label">Online Service</span
             ><span class="summary__addon-value">{{
-              $store.state.periodPlan
-                ? `$${onlineMonth}/mo`
-                : `$${onlineYear}/yr`
+              periodPlan ? `$${onlineMonth}/mo` : `$${onlineYear}/yr`
             }}</span>
           </div>
         </div>
-        <div class="summary__addon-storage" v-if="$store.state.largerStorage">
+        <div class="summary__addon-storage" v-if="largerStorage">
           <div class="summary__addon-line">
             <span class="summary__addon-label">Larger Storage</span>
             <span class="summary__addon-value">{{
-              $store.state.periodPlan
-                ? `$${storageMonth}/mo`
-                : `$${storageYear}/yr`
+              periodPlan ? `$${storageMonth}/mo` : `$${storageYear}/yr`
             }}</span>
           </div>
         </div>
-        <div
-          class="summary__addon-profile"
-          v-if="$store.state.customizableProfile"
-        >
+        <div class="summary__addon-profile" v-if="customizableProfile">
           <div class="summary__addon-line">
             <span class="summary__addon-label">Customizable Profile</span>
             <span class="summary__addon-value"
               >{{
-                $store.state.periodPlan
+                periodPlan
                   ? `$${customizableMonth}/mo`
                   : `$${customizableYear}/yr`
               }}
@@ -63,11 +50,10 @@
       <div class="summary__total">
         <div class="summary__total-line">
           <span class="summary__total-label"
-            >Total (per {{ $store.state.periodPlan ? "month" : "year" }})</span
+            >Total (per {{ periodPlan ? "month" : "year" }})</span
           >
           <span class="summary__total-value"
-            >+{{ summaryTotal
-            }}{{ $store.state.periodPlan ? "mo" : "yr" }}</span
+            >+{{ summaryTotal }}{{ periodPlan ? "mo" : "yr" }}</span
           >
         </div>
       </div>
@@ -76,6 +62,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "StepSummary",
   data() {
@@ -95,44 +82,41 @@ export default {
     };
   },
   computed: {
+    ...mapState([
+      "selectedPlan",
+      "periodPlan",
+      "onlineService",
+      "largerStorage",
+      "customizableProfile",
+    ]),
     summaryTotal() {
       let total = 0;
-      switch (this.$store.state.selectedPlan) {
+      switch (this.selectedPlan) {
         case "arcade":
-          total += this.$store.state.periodPlan
-            ? this.arcadeMonth
-            : this.arcadeYear;
+          total += this.periodPlan ? this.arcadeMonth : this.arcadeYear;
 
           break;
 
         case "advanced":
-          total += this.$store.state.periodPlan
-            ? this.advancedMonth
-            : this.advancedYear;
+          total += this.periodPlan ? this.advancedMonth : this.advancedYear;
 
           break;
 
         case "pro":
-          total += this.$store.state.periodPlan ? this.proMonth : this.proYear;
+          total += this.periodPlan ? this.proMonth : this.proYear;
           break;
       }
 
-      if (this.$store.state.onlineService) {
-        total += this.$store.state.periodPlan
-          ? this.onlineMonth
-          : this.onlineYear;
+      if (this.onlineService) {
+        total += this.periodPlan ? this.onlineMonth : this.onlineYear;
       }
 
-      if (this.$store.state.largerStorage) {
-        total += this.$store.state.periodPlan
-          ? this.storageMonth
-          : this.storageYear;
+      if (this.largerStorage) {
+        total += this.periodPlan ? this.storageMonth : this.storageYear;
       }
 
-      if (this.$store.state.customizableProfile) {
-        total += this.$store.state.periodPlan
-          ? this.storageMonth
-          : this.storageYear;
+      if (this.customizableProfile) {
+        total += this.periodPlan ? this.storageMonth : this.storageYear;
       }
       return total;
     },

@@ -8,7 +8,7 @@
       <label
         class="addons__item"
         for="online"
-        :class="{ active: this.$store.state.onlineService === true }"
+        :class="{ active: onlineService === true }"
       >
         <input
           type="checkbox"
@@ -18,15 +18,13 @@
         />
         <label class="label" for="online">Online service</label
         ><span class="description">Access to multiplayer games</span>
-        <span class="price">
-          +${{ $store.state.periodPlan ? `1/mo` : `10/yr` }}
-        </span>
+        <span class="price"> +${{ periodPlan ? `1/mo` : `10/yr` }} </span>
       </label>
 
       <label
         class="addons__item"
         for="storage"
-        :class="{ active: this.$store.state.largerStorage === true }"
+        :class="{ active: largerStorage === true }"
       >
         <input
           type="checkbox"
@@ -35,15 +33,13 @@
           v-model="storageChange"
         /><label class="label" for="storage">Larger storage</label
         ><span class="description">Extra 1TB of cloud save</span>
-        <span class="price">
-          +${{ $store.state.periodPlan ? `2/mo` : `20/yr` }}
-        </span>
+        <span class="price"> +${{ periodPlan ? `2/mo` : `20/yr` }} </span>
       </label>
 
       <label
         class="addons__item"
         for="profile"
-        :class="{ active: this.$store.state.customizableProfile === true }"
+        :class="{ active: customizableProfile === true }"
       >
         <input
           type="checkbox"
@@ -53,24 +49,29 @@
         />
         <label class="label" for="profile">Profile</label
         ><span class="description">Custom theme on your profile</span>
-        <span class="price">
-          +${{ $store.state.periodPlan ? `2/mo` : `20/yr` }}
-        </span>
+        <span class="price"> +${{ periodPlan ? `2/mo` : `20/yr` }} </span>
       </label>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "StepPickAddon",
   data() {
     return {};
   },
   computed: {
+    ...mapState([
+      "periodPlan",
+      "onlineService",
+      "largerStorage",
+      "customizableProfile",
+    ]),
     onlineChange: {
       get() {
-        return this.$store.state.onlineService;
+        return this.onlineService;
       },
       set(value) {
         this.$store.commit("CHANGE_ONLINE", value);
@@ -78,7 +79,7 @@ export default {
     },
     storageChange: {
       get() {
-        return this.$store.state.largerStorage;
+        return this.largerStorage;
       },
       set(value) {
         this.$store.commit("CHANGE_STORAGE", value);
@@ -86,7 +87,7 @@ export default {
     },
     profileChange: {
       get() {
-        return this.$store.state.customizableProfile;
+        return this.customizableProfile;
       },
       set(value) {
         this.$store.commit("CHANGE_PROFILE", value);
