@@ -41,16 +41,17 @@ export const store = createStore({
     CHANGE_PROFILE(state, payload) {
       state.customizableProfile = payload;
     },
-    setCurrentStepIndex(state, index) {
+    SET_CURRENT_STEP_INDEX(state, index) {
       state.currentStepIndex = index;
     },
   },
   actions: {
-    updateStepData({ commit }, { step, data }) {
-      commit(step, data);
+    updateStepData(context, { step, data }) {
+      context.commit(step, data);
+      //Não tem mutation aqui?
     },
-    goToStep({ commit }, index) {
-      commit("setCurrentStepIndex", index);
+    goToStep(context, index) {
+      context.commit("SET_CURRENT_STEP_INDEX", index);
     },
   },
 });
