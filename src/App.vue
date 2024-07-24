@@ -9,7 +9,7 @@
         ></component>
       </KeepAlive>
 
-      <div class="navigation">
+      <div class="navigation" v-if="currentStepIndex < 4">
         <button
           class="navigation__button back"
           v-if="currentStepIndex > 0"
@@ -22,7 +22,7 @@
           v-if="currentStepIndex < steps.length - 1"
           @click="nextStep"
         >
-          Next Step
+          {{ currentStepIndex == "3" ? "Confirm" : "Next Step" }}
         </button>
       </div>
     </section>
@@ -38,6 +38,7 @@ import StepPersonalInfo from "./components/StepPersonalInfo.vue";
 import StepSelectPlan from "./components/StepSelectPlan.vue";
 import StepPickAddon from "@/components/StepPickAddon";
 import StepSummary from "@/components/StepSummary";
+import StepFinish from "@/components/StepFinish";
 
 export default {
   name: "App",
@@ -48,6 +49,7 @@ export default {
     StepSelectPlan,
     StepPickAddon,
     StepSummary,
+    StepFinish,
   },
   computed: {
     ...mapState(["currentStepIndex"]),
@@ -57,6 +59,7 @@ export default {
         "StepSelectPlan",
         "StepPickAddon",
         "StepSummary",
+        "StepFinish",
       ];
     },
     currentStepComponent() {
@@ -199,5 +202,13 @@ export default {
 
 .navigation__button.back:hover {
   color: var(--DarkBlue);
+}
+
+.center-text {
+  text-align: center;
+}
+
+.text-line-md {
+  line-height: 1.5rem;
 }
 </style>
