@@ -3,7 +3,12 @@
     <ul class="sidebar__list">
       <li v-for="(step, label, index) in steps" :key="index">
         <div class="sidebar__content">
-          <span class="sidebar__number">{{ index + 1 }}</span>
+          <span
+            class="sidebar__number"
+            :class="{ current__selected: currentStepIndex === index }"
+            >{{ index + 1 }}</span
+          >
+
           <span class="sidebar__info">
             <span class="sidebar__label">{{ label }}</span>
             <span class="sidebar__step"> {{ step }}</span>
@@ -13,7 +18,9 @@
     </ul>
   </section>
 </template>
+
 <script>
+import { mapState } from "vuex";
 export default {
   name: "SidebarForm",
   data() {
@@ -25,6 +32,12 @@ export default {
         "step 4": "Summary",
       },
     };
+  },
+  computed: {
+    ...mapState({
+      currentStepIndex: (state) => state.currentStepIndex,
+    }),
+    // ...mapState(['currentStepIndex']) funciona igual
   },
 };
 </script>
@@ -52,8 +65,10 @@ export default {
   height: 25px;
   width: 25px;
   text-align: center;
-  line-height: 23px;
+  line-height: 25px;
   font-size: 0.85rem;
+  font-weight: 700;
+  transition: 0.3s all ease;
 }
 .sidebar__info {
   display: flex;
@@ -71,5 +86,10 @@ export default {
   font-size: 0.8rem;
   letter-spacing: 1px;
   font-weight: 600;
+}
+
+.current__selected {
+  background-color: #bce3ff;
+  color: #04264a;
 }
 </style>
