@@ -3,10 +3,12 @@
     <SidebarForm />
     <section class="grid__data">
       <KeepAlive>
-        <component
-          :is="currentStepComponent"
-          @update-step="handleUpdateStep"
-        ></component>
+        <transition mode="out-in" name="content">
+          <component
+            :is="currentStepComponent"
+            @update-step="handleUpdateStep"
+          ></component>
+        </transition>
       </KeepAlive>
 
       <div class="navigation" v-if="currentStepIndex < 4">
@@ -210,5 +212,15 @@ export default {
 
 .text-line-md {
   line-height: 1.5rem;
+}
+
+.content-enter-active,
+.content-leave-active {
+  transition: all 0.2s ease;
+}
+
+.content-enter-from,
+.content-leave-to {
+  opacity: 0;
 }
 </style>
