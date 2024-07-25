@@ -1,6 +1,6 @@
 <template>
   <div class="container grid grid-tempate-area-main">
-    <SidebarForm />
+    <SidebarForm class="sidebar__options" />
     <section class="grid__data">
       <KeepAlive>
         <transition mode="out-in" name="content">
@@ -222,5 +222,39 @@ export default {
 .content-enter-from,
 .content-leave-to {
   opacity: 0;
+}
+
+@media screen and (max-width: 769px) {
+  .grid-tempate-area-main {
+    grid-template-areas:
+      "sidebar"
+      "data"
+      "footer";
+    grid-template-rows: 30% 65% 5%;
+  }
+
+  .container {
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .grid__sidebar {
+  }
+
+  .grid__data {
+    border-radius: 16px;
+    margin-top: -50px;
+    position: relative;
+    z-index: 2;
+    background-color: #fff;
+    width: 90%;
+    justify-self: center;
+  }
+
+  .grid__footer {
+  }
+
+  .grid__buttons {
+  }
 }
 </style>

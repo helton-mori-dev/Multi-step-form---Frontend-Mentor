@@ -92,4 +92,25 @@ export default {
   background-color: #bce3ff;
   color: #04264a;
 }
+
+@media screen and (max-width: 769px) {
+  .sidebar__container {
+    background-image: url("@/assets/images/bg-sidebar-desktop.svg");
+    background-position: center 90%;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .sidebar__list {
+    padding: 2rem 0 0 2rem;
+    display: grid;
+    grid-template-columns: 40px 40px 40px 40px;
+    justify-content: center;
+  }
+
+  .sidebar__info {
+    display: none;
+  }
+}
 </style>
