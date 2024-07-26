@@ -10,23 +10,7 @@
           ></component>
         </transition>
       </KeepAlive>
-
-      <div class="navigation" v-if="currentStepIndex < 4">
-        <button
-          class="navigation__button back"
-          v-if="currentStepIndex > 0"
-          @click="previousStep"
-        >
-          Go Back
-        </button>
-        <button
-          class="navigation__button next"
-          v-if="currentStepIndex < steps.length - 1"
-          @click="nextStep"
-        >
-          {{ currentStepIndex == "3" ? "Confirm" : "Next Step" }}
-        </button>
-      </div>
+      <NavigationButton />
     </section>
     <Footer />
   </div>
@@ -41,6 +25,7 @@ import StepSelectPlan from "./components/StepSelectPlan.vue";
 import StepPickAddon from "@/components/StepPickAddon";
 import StepSummary from "@/components/StepSummary";
 import StepFinish from "@/components/StepFinish";
+import NavigationButton from "@/components/NavigationButton";
 
 export default {
   name: "App",
@@ -52,6 +37,7 @@ export default {
     StepPickAddon,
     StepSummary,
     StepFinish,
+    NavigationButton,
   },
   computed: {
     ...mapState(["currentStepIndex"]),
