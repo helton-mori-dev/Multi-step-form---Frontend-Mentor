@@ -230,20 +230,19 @@ export default {
       "sidebar"
       "data"
       "footer";
-    grid-template-rows: 30% 65% 5%;
+    grid-template-rows: 30% minmax(300px, 55%) 5%;
   }
 
   .container {
     padding: 0;
     border-radius: 0;
-  }
-
-  .grid__sidebar {
+    background-color: var(--Magnolia);
+    height: 100vh;
   }
 
   .grid__data {
     border-radius: 16px;
-    margin-top: -50px;
+    margin-top: -125px;
     position: relative;
     z-index: 2;
     background-color: #fff;
@@ -251,10 +250,12 @@ export default {
     justify-self: center;
   }
 
-  .grid__footer {
+  .content {
+    width: 80%;
   }
 
-  .grid__buttons {
+  .navigation {
+    background-color: #fff;
   }
 }
 </style>
