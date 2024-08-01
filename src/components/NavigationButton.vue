@@ -89,4 +89,15 @@ export default {
 .navigation__button.back:hover {
   color: var(--DarkBlue);
 }
+
+@media screen and (max-width: 769px) {
+  .navigation {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem 1rem;
+    grid-template-rows: 100%;
+    position: fixed;
+    bottom: 1rem;
+  }
+}
 </style>

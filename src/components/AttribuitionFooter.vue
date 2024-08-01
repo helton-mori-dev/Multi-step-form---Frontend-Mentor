@@ -22,4 +22,10 @@
 .attribution a {
   color: hsl(228, 45%, 44%);
 }
+@media screen and (max-width: 769px) {
+  .attribution {
+    position: fixed;
+    bottom: 0;
+  }
+}
 </style>

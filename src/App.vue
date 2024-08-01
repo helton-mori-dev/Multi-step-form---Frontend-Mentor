@@ -216,7 +216,7 @@ export default {
       "sidebar"
       "data"
       "footer";
-    grid-template-rows: 30% minmax(300px, 55%) 5%;
+    grid-template-rows: 30% minmax(300px, 40%) 5%;
   }
 
   .container {
