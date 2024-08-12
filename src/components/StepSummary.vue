@@ -47,15 +47,15 @@
           </div>
         </div>
       </div>
-      <div class="summary__total">
-        <div class="summary__total-line">
-          <span class="summary__total-label"
-            >Total (per {{ periodPlan ? "month" : "year" }})</span
-          >
-          <span class="summary__total-value"
-            >+{{ summaryTotal }}{{ periodPlan ? "mo" : "yr" }}</span
-          >
-        </div>
+    </div>
+    <div class="total">
+      <div class="total-line">
+        <span class="total-label"
+          >Total (per {{ periodPlan ? "month" : "year" }})</span
+        >
+        <span class="total-value"
+          >+{{ summaryTotal }}{{ periodPlan ? "mo" : "yr" }}</span
+        >
       </div>
     </div>
   </div>
@@ -145,6 +145,8 @@ export default {
 <style scoped>
 .summary {
   padding: 1rem 1.5rem;
+  background-color: var(--Magnolia);
+  border-radius: 8px;
 }
 
 .summary__plan {
@@ -188,7 +190,7 @@ export default {
 }
 
 .summary__addon-label,
-.summary__total {
+.total {
   color: var(--CoolGray);
 }
 
@@ -197,15 +199,21 @@ export default {
   color: var(--DarkBlue);
 }
 
-.summary__total-line {
+.total-line {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 2rem;
 }
-.summary__total-value {
+.total-value {
   justify-self: end;
   color: var(--PurplishBlue);
   font-weight: 700;
   font-size: 1.5rem;
+}
+
+@media screen and (max-width: 769px) {
+  .total-line {
+    padding: 0 1rem;
+  }
 }
 </style>

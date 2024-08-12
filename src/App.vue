@@ -228,6 +228,7 @@ export default {
     border-radius: 0;
     background-color: var(--Magnolia);
     height: 100vh;
+    width: 100%;
   }
 
   .grid__data {
@@ -237,12 +238,18 @@ export default {
     z-index: 2;
     background-color: #fff;
     width: 90%;
-    justify-self: center;
-    grid-template-rows: auto 80px;
+    /* justify-self: center;
+    grid-template-rows: auto 80px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding-bottom: 2rem;
+    box-shadow: 0px 1px 16px rgba(0, 0, 0, 0.1);
   }
 
   .content {
-    width: 80%;
+    width: 90%;
   }
 
   .navigation {
