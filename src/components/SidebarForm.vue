@@ -99,7 +99,7 @@ export default {
     background-position: center 90%;
     background-size: cover;
     width: 100%;
-    height: 100%;
+    height: 230px;
     position: relative;
   }
   .sidebar__list {

@@ -8,7 +8,7 @@ export const store = createStore({
       //   selectedPlan: [],
       //   pickedAddons: [],
       // },
-      currentStepIndex: 0,
+      currentStepIndex: 1,
       selectedPlan: "arcade",
       periodPlan: true, //true == monthly, false == yearly
       onlineService: false,

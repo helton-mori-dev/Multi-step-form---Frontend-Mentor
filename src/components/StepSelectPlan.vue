@@ -19,12 +19,16 @@
             v-model="planChange"
           />
           <label for="arcade"
-            >Arcade
+            ><p class="text">Arcade</p>
             <span class="price"
               >$9{{ periodPlan ? "/mo " : "0/yr" }}</span
             ></label
           >
-          <span class="benefit" v-if="!periodPlan">2 months free</span>
+          <transition name="benefit"
+            ><span class="benefit" v-if="!periodPlan"
+              >2 months free</span
+            ></transition
+          >
         </label>
         <label
           class="select-plan__option"
@@ -39,12 +43,16 @@
             v-model="planChange"
           />
           <label for="advanced"
-            >Advanced
+            ><p class="text">Advanced</p>
             <span class="price"
               >$12{{ periodPlan ? "/mo " : "0/yr" }}</span
             ></label
           >
-          <span class="benefit" v-if="!periodPlan">2 months free</span>
+          <transition name="benefit"
+            ><span class="benefit" v-if="!periodPlan"
+              >2 months free</span
+            ></transition
+          >
         </label>
         <label
           class="select-plan__option"
@@ -59,12 +67,16 @@
             v-model="planChange"
           />
           <label for="pro"
-            >Pro
+            ><p class="text">Pro</p>
             <span class="price"
               >$15{{ periodPlan ? "/mo " : "0/yr" }}</span
             ></label
           >
-          <span class="benefit" v-if="!periodPlan">2 months free</span>
+          <transition name="benefit"
+            ><span class="benefit" v-if="!periodPlan"
+              >2 months free</span
+            ></transition
+          >
         </label>
       </div>
 
@@ -256,5 +268,64 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 100%;
+}
+
+.benefit-enter-active,
+.benefit-leave-active {
+  transition: all 0.3s ease;
+}
+
+.benefit-enter-from,
+.benefit-leave-to {
+  opacity: 0;
+}
+
+@media screen and (max-width: 769px) {
+  .select-plan {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+
+  .select-plan__option {
+    padding: 1rem 1rem 0.25rem;
+  }
+
+  .select-plan__option label {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: repeat(3, 20px);
+  }
+
+  .select-plan__option label::before {
+    grid-row: 1/2;
+    grid-column: 1/2;
+  }
+
+  .select-plan__option label .price {
+    grid-row: 2/2;
+    grid-column: 2/3;
+  }
+
+  .select-plan__option label .text {
+    grid-row: 1/2;
+    grid-column: 2/3;
+  }
+
+  .select-plan__option .price {
+    grid-row: 2/3;
+    grid-column: 2/3;
+  }
+
+  .select-plan__option .benefit {
+    margin-top: 0;
+    margin-left: 50px;
+    margin-bottom: 0.5rem;
+  }
+
+  .select__period {
+    background-color: var(--Magnolia);
+    padding: 1rem 0.75rem;
+    border-radius: 16px;
+  }
 }
 </style>

@@ -212,11 +212,15 @@ export default {
 
 @media screen and (max-width: 769px) {
   .grid-tempate-area-main {
-    grid-template-areas:
+    /* grid-template-areas:
       "sidebar"
       "data"
       "footer";
-    grid-template-rows: 30% minmax(300px, 40%) 5%;
+    grid-template-rows: 30% minmax(auto, 50%) 5%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
   }
 
   .container {
@@ -234,6 +238,7 @@ export default {
     background-color: #fff;
     width: 90%;
     justify-self: center;
+    grid-template-rows: auto 80px;
   }
 
   .content {
