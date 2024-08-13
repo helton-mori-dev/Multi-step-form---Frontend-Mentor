@@ -24,7 +24,7 @@
         name="name"
         required
         placeholder="Name e.g. Stephen King"
-        v-model="form.name"
+        v-model="formName"
         @input="clearErrorMsg()"
       />
 
@@ -41,7 +41,7 @@
         name="email"
         required
         placeholder="e.g. stephenking@lorem.com"
-        v-model="form.email"
+        v-model="formEmail"
       />
 
       <label for="phone"
@@ -56,7 +56,7 @@
         name="phone"
         required
         placeholder="e.g. +1 234 567 890"
-        v-model="form.phone"
+        v-model="formPhone"
       />
 
       <!-- <input
@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState, mapMutations } from "vuex";
 export default {
   name: "StepPersonalInfo",
   props: ["initialData"],
@@ -89,14 +89,41 @@ export default {
       personalInfo: this.initialData || {},
     };
   },
+  computed: {
+    ...mapState(["name", "email", "phone"]),
+    formName: {
+      get() {
+        return this.name;
+      },
+      set(value) {
+        this.CHANGE_NAME(value);
+      },
+    },
+    formEmail: {
+      get() {
+        return this.email;
+      },
+      set(value) {
+        this.CHANGE_EMAIL(value);
+      },
+    },
+    formPhone: {
+      get() {
+        return this.phone;
+      },
+      set(value) {
+        this.CHANGE_PHONE(value);
+      },
+    },
+  },
   methods: {
     validateForm() {
       // let isValid = true;
-      this.errorMsg.name = this.form.name ? "" : "This field is required";
-      this.errorMsg.email = this.form.email.match(/^[^@]+@[^@]+\.[^@]+$/)
+      this.errorMsg.name = this.name ? "" : "This field is required";
+      this.errorMsg.email = this.email.match(/^[^@]+@[^@]+\.[^@]+$/)
         ? ""
         : "The email field is not valid";
-      this.errorMsg.phone = this.form.phone.match(/^\d{10,11}$/)
+      this.errorMsg.phone = this.phone.match(/^\d{10,11}$/)
         ? ""
         : "The phone number is not valid";
 
@@ -118,6 +145,7 @@ export default {
         data: this.personalInfo,
       });
     },
+    ...mapMutations(["CHANGE_NAME", "CHANGE_PHONE", "CHANGE_EMAIL"]),
   },
 };
 </script>

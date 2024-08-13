@@ -219,7 +219,7 @@ export default {
     grid-template-rows: 30% minmax(auto, 50%) 5%; */
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
   }
 
@@ -242,7 +242,7 @@ export default {
     grid-template-rows: auto 80px; */
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     padding-bottom: 2rem;
     box-shadow: 0px 1px 16px rgba(0, 0, 0, 0.1);

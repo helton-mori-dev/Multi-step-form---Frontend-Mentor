@@ -37,7 +37,6 @@ export default {
     ...mapState({
       currentStepIndex: (state) => state.currentStepIndex,
     }),
-    // ...mapState(['currentStepIndex']) funciona igual
   },
 };
 </script>

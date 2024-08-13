@@ -3,12 +3,10 @@ import { createStore } from "vuex";
 export const store = createStore({
   state() {
     return {
-      // formData: {
-      //   personalInfo: {},
-      //   selectedPlan: [],
-      //   pickedAddons: [],
-      // },
-      currentStepIndex: 1,
+      name: "",
+      email: "",
+      phone: "",
+      currentStepIndex: 0,
       selectedPlan: "arcade",
       periodPlan: true, //true == monthly, false == yearly
       onlineService: false,
@@ -17,15 +15,15 @@ export const store = createStore({
     };
   },
   mutations: {
-    // updataPersonalInfo(state, info) {
-    //   state.formData.personalInfo = info;
-    // },
-    // selectPlan(state, plan) {
-    //   state.formData.selectedPlan = plan;
-    // },
-    // pickAddons(state, addons) {
-    //   state.formData.pickedAddons = addons;
-    // },
+    CHANGE_NAME(state, payload) {
+      state.name = payload;
+    },
+    CHANGE_EMAIL(state, payload) {
+      state.email = payload;
+    },
+    CHANGE_PHONE(state, payload) {
+      state.phone = payload;
+    },
     CHANGE_PLAN(state, payload) {
       state.selectedPlan = payload;
     },
@@ -48,7 +46,6 @@ export const store = createStore({
   actions: {
     updateStepData(context, { step, data }) {
       context.commit(step, data);
-      //Não tem mutation aqui?
     },
     goToStep(context, index) {
       context.commit("SET_CURRENT_STEP_INDEX", index);
