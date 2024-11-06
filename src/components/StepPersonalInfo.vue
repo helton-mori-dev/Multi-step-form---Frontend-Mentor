@@ -4,13 +4,7 @@
     <h2 class="content__subtitle">
       Please provide your name, email address, and phone number.
     </h2>
-    <form
-      action="#"
-      method="post"
-      class="content__form"
-      @submit.prevent="validateForm"
-      novalidate
-    >
+    <form action="#" class="content__form">
       <label for="name"
         >Name
         <span v-if="errorMsg.name" class="input__error">{{
@@ -24,8 +18,8 @@
         name="name"
         required
         placeholder="Name e.g. Stephen King"
-        v-model="formName"
-        @input="clearErrorMsg()"
+        v-model="form.name"
+        @blur="validateField('name')"
       />
 
       <label for="email"
@@ -41,7 +35,8 @@
         name="email"
         required
         placeholder="e.g. stephenking@lorem.com"
-        v-model="formEmail"
+        v-model="form.email"
+        @blur="validateField('email')"
       />
 
       <label for="phone"
@@ -56,15 +51,9 @@
         name="phone"
         required
         placeholder="e.g. +1 234 567 890"
-        v-model="formPhone"
+        v-model="form.phone"
+        @blur="validateField('phone')"
       />
-
-      <!-- <input
-        type="button"
-        value="Next Step"
-        class="input__submit"
-        @click="submitStep"
-      /> -->
     </form>
   </div>
 </template>
@@ -90,62 +79,51 @@ export default {
     };
   },
   computed: {
-    ...mapState(["name", "email", "phone"]),
-    formName: {
-      get() {
-        return this.name;
-      },
-      set(value) {
-        this.CHANGE_NAME(value);
-      },
-    },
-    formEmail: {
-      get() {
-        return this.email;
-      },
-      set(value) {
-        this.CHANGE_EMAIL(value);
-      },
-    },
-    formPhone: {
-      get() {
-        return this.phone;
-      },
-      set(value) {
-        this.CHANGE_PHONE(value);
-      },
-    },
+    ...mapState(["formData.name", "formData.email", "formData.phone"]),
   },
   methods: {
-    validateForm() {
-      // let isValid = true;
-      this.errorMsg.name = this.name ? "" : "This field is required";
-      this.errorMsg.email = this.email.match(/^[^@]+@[^@]+\.[^@]+$/)
-        ? ""
-        : "The email field is not valid";
-      this.errorMsg.phone = this.phone.match(/^\d{10,11}$/)
-        ? ""
-        : "The phone number is not valid";
+    ...mapActions(["changeStep", "saveFormData"]),
+    ...mapMutations(["SET_FORM_VALID"]),
+    validateField(field) {
+      if (field === "name") {
+        this.errorMsg.name = this.form.name.trim()
+          ? null
+          : "The name field is mandatory";
+      } else if (field === "email") {
+        this.errorMsg.email = this.form.email.trim()
+          ? null
+          : "The email field is invalid";
+      } else if (field === "phone") {
+        this.errorMsg.phone = this.form.phone.trim()
+          ? null
+          : "The phone number is invalid";
+      }
 
-      // isValid =
-      //   !this.errorMsg.name && !this.errorMsg.email && !this.errorMsg.phone;
-
-      // if (isValid) {
-      //   this.nextStep();
-      // }
+      if (!this.errorMsg.name && !this.errorMsg.email && !this.errorMsg.phone) {
+        this.validateForm();
+      } else {
+        this.SET_FORM_VALID(false);
+      }
     },
-    ...mapActions(["changeStep"]),
-    clearErrorMsg() {},
-    nextStep() {
-      this.changeStep("StepSelectPlan");
+    validateForm() {
+      this.SET_FORM_VALID(true);
+    },
+    clearErrorMsg() {
+      this.errorMsg = { name: "", email: "", phone: "" };
     },
     submitStep() {
-      this.$emit("update-step", {
-        step: "updatePersonalInfo",
-        data: this.personalInfo,
-      });
+      this.clearErrorMsg();
+
+      if (this.validateForm()) {
+        this.saveFormData({
+          name: this.form.name,
+          email: this.form.email,
+          phone: this.form.phone,
+        });
+      }
+
+      this.SET_FORM_VALID(true);
     },
-    ...mapMutations(["CHANGE_NAME", "CHANGE_PHONE", "CHANGE_EMAIL"]),
   },
 };
 </script>

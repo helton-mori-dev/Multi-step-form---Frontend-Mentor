@@ -14,6 +14,8 @@
     >
       {{ currentStepIndex == "3" ? "Confirm" : "Next Step" }}
     </button>
+    formDataIsValid:
+    {{ formDataIsValid }}
   </div>
 </template>
 
@@ -22,7 +24,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   name: "NavigationButton",
   computed: {
-    ...mapState(["currentStepIndex"]),
+    ...mapState(["currentStepIndex", "formDataIsValid"]),
     steps() {
       return [
         "StepPersonalInfo",
@@ -36,6 +38,8 @@ export default {
   methods: {
     ...mapActions(["goToStep", "updateStepData"]),
     nextStep() {
+      if (this.currentStepIndex === 0 && !this.formDataIsValid) return false;
+
       this.goToStep(this.currentStepIndex + 1);
     },
     previousStep() {

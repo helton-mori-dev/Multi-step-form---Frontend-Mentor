@@ -3,18 +3,27 @@ import { createStore } from "vuex";
 export const store = createStore({
   state() {
     return {
-      name: "",
-      email: "",
-      phone: "",
+      formData: {
+        name: "",
+        email: "",
+        phone: "",
+      },
       currentStepIndex: 0,
       selectedPlan: "arcade",
       periodPlan: true, //true == monthly, false == yearly
       onlineService: false,
       largerStorage: false,
       customizableProfile: false,
+      formDataIsValid: false,
     };
   },
   mutations: {
+    SET_FORM_VALID(state, payload) {
+      state.formDataIsValid = payload;
+    },
+    SET_FORM_DATA(state, payload) {
+      state.formData = payload;
+    },
     CHANGE_NAME(state, payload) {
       state.name = payload;
     },
@@ -49,6 +58,10 @@ export const store = createStore({
     },
     goToStep(context, index) {
       context.commit("SET_CURRENT_STEP_INDEX", index);
+    },
+    saveFormData({ commit }, formData) {
+      console.log("formData", formData);
+      commit("SET_FORM_DATA", formData);
     },
   },
 });
