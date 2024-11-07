@@ -70,16 +70,11 @@ export default {
         email: "",
         phone: "",
       },
-      form: {
-        name: "",
-        email: "",
-        phone: "",
-      },
       personalInfo: this.initialData || {},
     };
   },
   computed: {
-    ...mapState(["formData.name", "formData.email", "formData.phone"]),
+    ...mapState(["form"]),
   },
   methods: {
     ...mapActions(["changeStep", "saveFormData"]),
@@ -90,13 +85,25 @@ export default {
           ? null
           : "The name field is mandatory";
       } else if (field === "email") {
-        this.errorMsg.email = this.form.email.trim()
-          ? null
-          : "The email field is invalid";
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!this.form.email.trim()) {
+          this.errorMsg.email = "The email field is mandatory";
+        } else if (!emailRegex.test(this.form.email)) {
+          this.errorMsg.email = "The email field is invalid";
+        } else {
+          this.errorMsg.email = null;
+        }
       } else if (field === "phone") {
-        this.errorMsg.phone = this.form.phone.trim()
-          ? null
-          : "The phone number is invalid";
+        const phoneRegex = /^\+?[0-9\s]+$/;
+
+        if (!this.form.phone.trim()) {
+          this.errorMsg.phone = "The phone number is mandatory";
+        } else if (!phoneRegex.test(this.form.phone)) {
+          this.errorMsg.phone = "The phone number is invalid";
+        } else {
+          this.errorMsg.phone = null;
+        }
       }
 
       if (!this.errorMsg.name && !this.errorMsg.email && !this.errorMsg.phone) {

@@ -3,7 +3,7 @@ import { createStore } from "vuex";
 export const store = createStore({
   state() {
     return {
-      formData: {
+      form: {
         name: "",
         email: "",
         phone: "",
@@ -22,7 +22,7 @@ export const store = createStore({
       state.formDataIsValid = payload;
     },
     SET_FORM_DATA(state, payload) {
-      state.formData = payload;
+      state.form = payload;
     },
     CHANGE_NAME(state, payload) {
       state.name = payload;
@@ -59,9 +59,8 @@ export const store = createStore({
     goToStep(context, index) {
       context.commit("SET_CURRENT_STEP_INDEX", index);
     },
-    saveFormData({ commit }, formData) {
-      console.log("formData", formData);
-      commit("SET_FORM_DATA", formData);
+    saveFormData({ commit }, form) {
+      commit("SET_FORM_DATA", form);
     },
   },
 });

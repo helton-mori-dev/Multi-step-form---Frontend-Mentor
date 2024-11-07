@@ -14,8 +14,6 @@
     >
       {{ currentStepIndex == "3" ? "Confirm" : "Next Step" }}
     </button>
-    formDataIsValid:
-    {{ formDataIsValid }}
   </div>
 </template>
 
