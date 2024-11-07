@@ -238,8 +238,6 @@ export default {
     z-index: 2;
     background-color: #fff;
     width: 90%;
-    /* justify-self: center;
-    grid-template-rows: auto 80px; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -254,6 +252,11 @@ export default {
 
   .navigation {
     background-color: #fff;
+  }
+
+  .content__subtitle {
+    font-size: 1.25rem;
+    line-height: 30px;
   }
 }
 </style>

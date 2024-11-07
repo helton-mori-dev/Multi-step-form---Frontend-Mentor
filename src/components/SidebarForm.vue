@@ -104,10 +104,15 @@ export default {
   .sidebar__list {
     padding: 2rem 0 0 2rem;
     display: grid;
-    grid-template-columns: 40px 40px 40px 40px;
+    grid-template-columns: 0.1fr 0.1fr 0.1fr 0.1fr;
     justify-content: center;
   }
-
+  .sidebar__number {
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
+    font-size: 1rem;
+  }
   .sidebar__info {
     display: none;
   }
