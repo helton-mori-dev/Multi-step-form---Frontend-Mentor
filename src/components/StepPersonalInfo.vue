@@ -5,55 +5,25 @@
       Please provide your name, email address, and phone number.
     </h2>
     <form action="#" class="content__form">
-      <label for="name"
-        >Name
-        <span v-if="errorMsg.name" class="input__error">{{
-          errorMsg.name
-        }}</span>
-      </label>
-
-      <input
-        type="text"
-        id="name"
-        name="name"
-        required
-        placeholder="Name e.g. Stephen King"
-        v-model="form.name"
-        @blur="validateField('name')"
-      />
-
-      <label for="email"
-        >Email address
-        <span v-if="errorMsg.email" class="input__error">{{
-          errorMsg.email
-        }}</span>
-      </label>
-
-      <input
-        type="email"
-        id="email"
-        name="email"
-        required
-        placeholder="e.g. stephenking@lorem.com"
-        v-model="form.email"
-        @blur="validateField('email')"
-      />
-
-      <label for="phone"
-        >Phone Number<span v-if="errorMsg.phone" class="input__error">{{
-          errorMsg.phone
-        }}</span></label
-      >
-
-      <input
-        type="tel"
-        id="phone"
-        name="phone"
-        required
-        placeholder="e.g. +1 234 567 890"
-        v-model="form.phone"
-        @blur="validateField('phone')"
-      />
+      <template v-for="field in formFields" :key="field.id">
+        <label :for="field.id">
+          {{ field.label }}
+          <transition name="content">
+            <span v-if="errorMsg[field.name]" class="input__error">
+              {{ errorMsg[field.name] }}
+            </span>
+          </transition>
+        </label>
+        <input
+          :type="field.type"
+          :id="field.id"
+          :name="field.name"
+          :placeholder="field.placeholder"
+          v-model="form[field.id]"
+          @blur="validateField(field.id)"
+          required
+        />
+      </template>
     </form>
   </div>
 </template>
@@ -71,6 +41,29 @@ export default {
         phone: "",
       },
       personalInfo: this.initialData || {},
+      formFields: [
+        {
+          label: "Name",
+          type: "text",
+          id: "name",
+          name: "name",
+          placeholder: "Name e.g. Stephen King",
+        },
+        {
+          label: "Email address",
+          type: "email",
+          id: "email",
+          name: "email",
+          placeholder: "e.g. stephenking@lorem.com",
+        },
+        {
+          label: "Phone Number",
+          type: "tel",
+          id: "phone",
+          name: "phone",
+          placeholder: "e.g. +1 234 567 890",
+        },
+      ],
     };
   },
   computed: {
