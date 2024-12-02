@@ -100,13 +100,15 @@ export default {
       }
 
       if (!this.errorMsg.name && !this.errorMsg.email && !this.errorMsg.phone) {
-        this.validateForm();
+        this.SET_FORM_VALID(true);
       } else {
         this.SET_FORM_VALID(false);
       }
     },
-    validateForm() {
-      this.SET_FORM_VALID(true);
+    validateAllFields() {
+      this.validateField("name");
+      this.validateField("email");
+      this.validateField("phone");
     },
     clearErrorMsg() {
       this.errorMsg = { name: "", email: "", phone: "" };

@@ -36,9 +36,14 @@ export default {
   methods: {
     ...mapActions(["goToStep", "updateStepData"]),
     nextStep() {
-      if (this.currentStepIndex === 0 && !this.formDataIsValid) return false;
-
-      this.goToStep(this.currentStepIndex + 1);
+      if (this.currentStepIndex === 0) {
+        this.$parent.$refs.personalInfoStep.validateAllFields();
+      }
+      if (!this.formDataIsValid) {
+        return;
+      } else {
+        this.goToStep(this.currentStepIndex + 1);
+      }
     },
     previousStep() {
       this.goToStep(this.currentStepIndex - 1);

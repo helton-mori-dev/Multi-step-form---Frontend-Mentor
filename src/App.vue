@@ -7,6 +7,7 @@
           <component
             :is="currentStepComponent"
             @update-step="handleUpdateStep"
+            ref="personalInfoStep"
           ></component>
         </transition>
       </KeepAlive>
